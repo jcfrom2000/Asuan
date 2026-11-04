@@ -17,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden bg-surface-container-low pt-28 pb-16 md:pb-28"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#f2ece3] via-[#e8ece3] to-[#fafaf4] pt-28 pb-16 md:pb-28"
     >
       {/* Full-bleed Ambient Background Image (Optimized for LCP and Image SEO) */}
       <img
@@ -25,8 +25,11 @@ export const Hero: React.FC<HeroProps> = ({
         alt={t.imageAlts.heroLandscape}
         fetchPriority="high"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700"
       />
+
+      {/* Gentle Contrast Veil */}
+      <div className="absolute inset-0 bg-[#fafaf4]/20 pointer-events-none" />
 
       {/* Hero Content Container */}
       <div className="relative max-w-[1240px] mx-auto px-5 md:px-16 z-10">

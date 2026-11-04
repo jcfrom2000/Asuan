@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Compass, Sparkles, CheckCircle2, AlertCircle, Calendar, ChevronRight } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Compass, CheckCircle2, AlertCircle, Calendar, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { getAssetUrl } from '../utils/assets';
@@ -108,10 +108,6 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
                     decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
                   />
-                </div>
-                {/* Decorative floating accent */}
-                <div className="absolute -bottom-2 -right-2 w-14 h-14 rounded-full bg-white shadow-lg border border-[#2e382b]/10 flex items-center justify-center text-primary">
-                  <Sparkles className="w-6 h-6 text-[#a35e3e]" />
                 </div>
               </div>
             </div>

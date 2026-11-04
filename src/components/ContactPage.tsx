@@ -84,11 +84,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   return (
     <div className="w-full flex flex-col bg-surface">
       {/* 1. Hero Header Section with Floral Poppies Vignette */}
-      <section className="relative w-full overflow-hidden py-24 md:py-32 bg-surface-container-low min-h-[460px] md:min-h-[520px] flex items-center justify-center">
+      <section className="relative w-full overflow-hidden py-24 md:py-32 bg-gradient-to-b from-[#f2ebe2] via-[#ebe2d7] to-[#fafaf4] min-h-[460px] md:min-h-[520px] flex items-center justify-center">
         {/* Full-bleed studio background photo (CLS=0 with fixed container) */}
         <div className="absolute inset-0 z-0">
           <img
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center transition-opacity duration-700"
             alt={t.imageAlts.contactPoppies}
             src={getAssetUrl('assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}
             loading="lazy"
