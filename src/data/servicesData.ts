@@ -1,0 +1,43 @@
+import { ServiceItem } from '../types';
+
+export const servicesData: ServiceItem[] = [
+  {
+    id: 'individual-therapy',
+    categoryEn: 'Individual Care',
+    categoryZh: '个体心理咨询',
+    titleEn: 'Individual Therapy',
+    titleZh: '个体心理咨询',
+    descriptionEn: 'A culturally affirming, trauma-informed space for individuals navigating anxiety, depression, past trauma, or cross-cultural identity struggles.',
+    descriptionZh: '为焦虑、抑郁、创伤、关系模式、身份探索与跨文化压力提供具有文化回应性、创伤知情的个体心理治疗。',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCPzlpcJ7wLrp4jl7NwYIWVY02vnsrEHTnYFpDJLl_g7zmP-zrOnuboC32DC3J3wLBAxJFB0WoW1S6NI4O6H5jLOoOofjS4c-QqKJ4trtEcJOLJP_SBoeqRWeNtUwa65Lz--9MOjbcoq5hNebe72_8HSjqp-YKeolzCOd7TtB_hbG3f-nkq5TDO9SV1mq0pSnp9SiyaPLJ9yw6u16IYmh3ESBzAv0lXR-8HXmBsGsQC5oFvs1dXYfE',
+    imageAlt: "Macro botanical study of a delicate Queen Anne's lace wild flower head against a pale sage textured linen background, subtle soft green shadows, organic and grounding aesthetic.",
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
+  {
+    id: 'couples-family-therapy',
+    categoryEn: 'Relational Care',
+    categoryZh: '伴侣与家庭咨询',
+    titleEn: 'Couple & Family Therapy',
+    titleZh: '伴侣与家庭咨询',
+    descriptionEn: 'Collaborative therapy for partners and families aiming to heal relational wounds, improve communication, and bridge cultural or generational gaps.',
+    descriptionZh: '适合希望理解反复出现的互动循环、减少彼此指责，并在文化、代际、信任与亲密议题上建立更可持续关系方式的伴侣与家庭。',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAfiEBz0ZwIbKOmQTI_14FSdYJLrYOQH_l0VU3sIJFaIlljUPTFX6Fk7sb58m6zaj2WlwcGQzGYqSNHnlGbDACtGrz0saGs5qrYYytR_rKH5wDktII8f5IwuDUX7I9kSF5MI_gHA86lxVIibe0oD92FdSQh4SWcBFbIDHzjI8MIbbOaLhqEImFtZSBDEWwjw65TUfZXlLNmGXV9NWwl5HJxeg2Rpm53tEeZ2BCepoWW86qIDR5TMZaf',
+    imageAlt: 'Gentle artistic composition of two intertwined green botanical stems resting on muted beige handmade paper, quiet harmonious lighting, representing connection and calm relational repair.',
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
+  {
+    id: 'sex-intimacy-therapy',
+    categoryEn: 'Intimacy & Desire',
+    categoryZh: '性与亲密关系治疗',
+    titleEn: 'Sex & Intimacy Therapy',
+    titleZh: '性与亲密关系治疗',
+    descriptionEn: 'Specialized, sex-positive counseling to address sexual dysfunction, desire discrepancies, intimacy barriers, and identity exploration without shame or stigma.',
+    descriptionZh: '由 AASECT 认证性治疗师（CST）提供性积极、具有文化回应性的性与亲密关系治疗，支持性困扰、亲密障碍、性创伤、宗教性羞耻与 LGBTQ+ 身份探索。',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAe-_4Ay9_qXJV-DOiC0sfPkdaWYkxNkvTGOY7NqTm5JQYKqJdL-57-b_2OnX290Q51vx0eWys9BMPbupBCefaiuribhq7rwbfX0Kfuysg7xYLp53gCq5yVXeKK26CdyDRPCE7IWX1Oug1AVrvoKwNM_QtoSmyaDMVPhZcXyPGkqWgKPGZttqD9TRmMvu69dookymFKvikqq3jfQeMTWk4aiP_-w8ee4pgeyZfZXn2mSxeLm_OWaCJc',
+    imageAlt: 'Delicate soft pink and ivory dried hellebore blossom against a clean warm ceramic surface, gentle studio shadows, tactile and respectful editorial composition.',
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
+];

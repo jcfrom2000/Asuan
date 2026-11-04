@@ -1,0 +1,43 @@
+import { ConsultationItem } from '../types';
+
+export const communityData: ConsultationItem[] = [
+  {
+    id: 'solution-focused-coaching',
+    categoryEn: 'Targeted Guidance',
+    categoryZh: '短期焦点辅导',
+    titleEn: 'Solution-Focused Coaching',
+    titleZh: '短期焦点辅导',
+    descriptionEn: 'Targeted, action-oriented coaching for international students and professionals facing career transitions, OPT/H1B anxiety, or specific decision-making crossroads.',
+    descriptionZh: '面向明确的生活、学业与职业决策提供短期、行动导向的辅导，适合并非在寻求心理疾病评估或治疗的人。',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC9DZ9dAr1P84eaPsjO079lU_4xnmb9idiEfYDYXp20teyHmIWuaX7p0g98Yzr67PyW5RNWWx2TSFpMofO2MCuDeTlY3vbaEkTmimAFMbG_g1Ju926OPzkT3oYCci7uAlkGcbpY7i90rgj2umcfX10d-FlcPlAqFyjxQQDaRTJsfSWUizumeCtYnrhuqsOAl9wQzZTirXO77Tu_Co2SsVzW3DgS_ifAJJRqXj0Q3zOaU5v_h7RFzDPS',
+    imageAlt: 'High-key minimalist photograph of chartreuse hellebore blossoms on an off-white stone pedestal with subtle shadow play, inspiring clarity, intentional focus and forward momentum.',
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
+  {
+    id: 'immigration-evaluation',
+    categoryEn: 'Clinical Documentation',
+    categoryZh: '移民心理评估',
+    titleEn: 'Immigration Evaluation',
+    titleZh: '移民心理评估',
+    descriptionEn: 'Comprehensive, culturally competent psychological evaluations for Extreme Hardship waivers, VAWA, Asylum, and U/T Visa immigration cases in IL, IN, WI, and MI.',
+    descriptionZh: '为移民法律案件提供全面、具有文化回应性的心理评估，可直接使用英语、普通话或粤语完成面谈。',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDiuLDkf9sN6uGJrvJxSsiW5XOY0beLDyfLyTlci9IwMz7WxsJflVMZ2yh38h1khaptnWI0uvZr1cU3AGI08laIkr_d_O6fby5BN-ABUe6kjX_Taiv4QjuUsOs9inKyk5ordSKbdOQVjn2mQhFICDvEOMPxtIL-PUjrXT3HjEOxHtrm1EyXbLtXnwGIZ8KegyJqUEqXJqTDMWwFVlxAmggHfIRsVRanD8N0ufuJIrs3zKYtj3C6UCNx',
+    imageAlt: 'Soft luminous lime-green and white petals glowing against warm linen background, clean serene botanical still life representing safety, shelter, and legal peace of mind.',
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
+  {
+    id: 'groups-workshops',
+    categoryEn: 'Collective Healing',
+    categoryZh: '团体辅导与社区讲座',
+    titleEn: 'Groups & Workshops',
+    titleZh: '团体辅导与社区讲座',
+    descriptionEn: 'Facilitated group spaces and psychoeducational workshops focusing on community healing, racial trauma resilience, minority identity, and relational skill-building.',
+    descriptionZh: '我提供治疗团体、支持小组和心理教育团体。每个团体都会单独说明入组沟通、适合人群、保密约定、费用与保险、形式和日期。',
+    imageSrc: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDjhPN9JpLGYkJldjxHeCwRIyVUEM2YukvSmykZhUx0tLrOpdtyGnqFAD_Ftd2UEbe8nexMGkBDmdRsqo7kdmYDs0GELPgDxBCHZmwAphcxZwuPcFYUN7iIH-3i5xBZoHM6zlPROq2-iWO-x3k-HacukAh1o3vttPoAWngazgcNveYgzLvOLF2cazQmF4rZtR3EBOLn4sGZMgFDzB0gZVDGIjhZD8iUPkGHt43gz_Gddt_UAJIv2frL',
+    imageAlt: 'A small glass vase containing fresh winter jasmine and hellebore stems bathed in gentle morning light, representing circle dialogue, community gathering, and shared resilience.',
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
+];

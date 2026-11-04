@@ -1,0 +1,7 @@
+# Robots.txt for OverStream Therapy
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location for Google, Bing, Baidu
+Sitemap: https://overstreamtherapy.com/sitemap.xml
