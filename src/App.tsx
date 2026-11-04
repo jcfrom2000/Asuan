@@ -27,7 +27,16 @@ function parseRouteFromLocation(pathname: string): {
   page: PageRoute;
   language: Language;
 } {
-  const cleanPath = pathname.toLowerCase().replace(/\/+$/, '') || '/';
+  let cleanPath = pathname.toLowerCase().replace(/\/+$/, '') || '/';
+
+  // Automatically strip GitHub Pages subpath (e.g. /asuan or /asuan/)
+  const rawBase = (import.meta.env.BASE_URL || '/').toLowerCase().replace(/\/+$/, '');
+  if (rawBase && rawBase !== '/' && cleanPath.startsWith(rawBase)) {
+    cleanPath = cleanPath.slice(rawBase.length) || '/';
+  } else if (cleanPath.startsWith('/asuan')) {
+    cleanPath = cleanPath.replace(/^\/asuan/, '') || '/';
+  }
+
   let language: Language = 'en';
   let page: PageRoute = 'home';
 
@@ -60,7 +69,7 @@ function parseRouteFromLocation(pathname: string): {
     pathWithoutLang === '/work-with-me/immigration-evaluation'
   ) {
     page = 'immigration-evaluation';
-  } else if (pathWithoutLang === '/home') {
+  } else if (pathWithoutLang === '/home' || pathWithoutLang === '/') {
     page = 'home';
   } else {
     const saved = typeof window !== 'undefined' ? (sessionStorage.getItem('active_tab') as PageRoute) : null;
@@ -102,13 +111,17 @@ export default function App() {
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('active_tab', newPage);
     }
+    const rawBase = import.meta.env.BASE_URL || '/';
+    const basePrefix = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
     const langPrefix = newLang === 'zh' ? '/zh' : '';
-    let cleanUrl = '/';
+    let targetPath = '/';
     if (newPage === 'home') {
-      cleanUrl = langPrefix || '/';
+      targetPath = langPrefix || '/';
     } else {
-      cleanUrl = `${langPrefix}/${newPage}`;
+      targetPath = `${langPrefix}/${newPage}`;
     }
+
+    const cleanUrl = basePrefix ? `${basePrefix}${targetPath}` : targetPath;
 
     if (window.location.pathname !== cleanUrl || window.location.hash) {
       window.history.pushState(null, '', cleanUrl);

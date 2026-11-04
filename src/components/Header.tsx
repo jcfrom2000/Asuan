@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Lock, ExternalLink } from 'lucide-react';
 import { Language, NavItem, NavSubItem } from '../types';
 import { navigationItems, getCleanPathForNav } from '../data/navigationData';
 import { translations } from '../data/translations';
@@ -219,6 +219,18 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
           </button>
 
+          {/* Existing Clients Portal link */}
+          <a
+            href="https://overstreamtherapy.clientsecure.me/sign-in"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="SimplePractice Client Portal"
+            className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all font-label-md text-xs bg-[#f0f0ea]/70 hover:bg-[#e8e8e0] border border-[#2e382b]/10 text-on-surface-variant hover:text-primary shadow-2xs whitespace-nowrap"
+          >
+            <Lock className="w-3.5 h-3.5 text-[#a35e3e]" />
+            <span>{t.nav.clientPortal}</span>
+          </a>
+
           {/* Book a Session CTA - Desktop Only (moved inside hamburger menu on mobile) */}
           <button
             type="button"
@@ -361,6 +373,20 @@ export const Header: React.FC<HeaderProps> = ({
                   </button>
                 </div>
               </div>
+
+              {/* Existing Clients Portal link */}
+              <a
+                href="https://overstreamtherapy.clientsecure.me/sign-in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#f0f0ea]/70 hover:bg-[#e8e8e0] border border-[#2e382b]/10 text-primary text-xs font-label-md transition-colors"
+              >
+                <span className="flex items-center gap-2 font-medium">
+                  <Lock className="w-3.5 h-3.5 text-[#a35e3e]" />
+                  <span>{t.nav.clientPortal} (SimplePractice)</span>
+                </span>
+                <ExternalLink className="w-3.5 h-3.5 text-on-surface-variant" />
+              </a>
 
               {/* Book a Session CTA inside Mobile Drawer */}
               <button

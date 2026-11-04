@@ -209,15 +209,29 @@ export function updatePageSeo({ page, language }: SeoConfig) {
   setMetaTag('name', 'keywords', data.keywords);
 
   // 4. Update OpenGraph Tags
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  const canonicalOgImage = `${origin}${cleanBase}assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg`;
+  const canonicalLogoImage = `${origin}${cleanBase}assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg`;
+  const imageAltText =
+    language === 'zh'
+      ? '曹翱璇 (Jessica Cao) 临床心理治疗师 - 执业团队与背景 | OverStream Therapy 在溪心理'
+      : 'Jessica Cao, LCSW, LCPC, CST - Clinical Psychotherapist & Founder | OverStream Therapy';
+
   setMetaTag('property', 'og:title', data.title);
   setMetaTag('property', 'og:description', data.description);
   setMetaTag('property', 'og:url', `${origin}${data.canonicalPath}`);
   setMetaTag('property', 'og:locale', language === 'zh' ? 'zh_CN' : 'en_US');
   setMetaTag('property', 'og:site_name', language === 'zh' ? 'OverStream Therapy 在溪心理' : 'OverStream Therapy');
+  setMetaTag('property', 'og:image', canonicalOgImage);
+  setMetaTag('property', 'og:image:alt', imageAltText);
 
   // 5. Update Twitter Cards
+  setMetaTag('name', 'twitter:card', 'summary_large_image');
   setMetaTag('name', 'twitter:title', data.title);
   setMetaTag('name', 'twitter:description', data.description);
+  setMetaTag('name', 'twitter:image', canonicalOgImage);
+  setMetaTag('name', 'twitter:image:alt', imageAltText);
 
   // 6. Update Canonical URL
   setLinkTag('canonical', `${origin}${data.canonicalPath}`);
@@ -247,8 +261,8 @@ export function updatePageSeo({ page, language }: SeoConfig) {
     name: language === 'zh' ? 'OverStream Therapy 在溪心理' : 'OverStream Therapy',
     alternateName: 'Jessica Cao Psychotherapy PLLC',
     url: `${origin}${data.canonicalPath}`,
-    logo: 'https://images.squarespace-cdn.com/content/v1/671c483a539b5c68f696ed16/1729906747576-E2VOAXJN0S9QJE1W6RX5/image-asset.jpg',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGy4JiTAvQhaDaGXVxV9QcibNcHWjBo__he5HQIYeDEhWywP9gSopEBj8kI5bOWYPqtFqhiH-5PArjFEbzEyF0ThIQunQFok2TPa-vMfBZwAdFALYpQGtdWhKd9YHPCpnAr7niOh6nW3UpW9x9NyXI91XoPv0KMk4R6Iu2upE2tuXqw3x6xQmTiChEqb9st7h9UH4B9Eb0P_FgGFKz8Jh0x_St7Y_pbZzFe9FPz44tNDK57ekbpokf',
+    logo: canonicalLogoImage,
+    image: canonicalOgImage,
     description: data.description,
     telephone: '+1-312-967-0117',
     email: 'info@overstreamtherapy.com',

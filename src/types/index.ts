@@ -24,7 +24,9 @@ export interface ServiceItem {
   descriptionEn: string;
   descriptionZh: string;
   imageSrc: string;
-  imageAlt: string;
+  imageAlt?: string;
+  imageAltEn?: string;
+  imageAltZh?: string;
   badge?: string;
   ctaTextEn: string;
   ctaTextZh: string;
@@ -39,7 +41,9 @@ export interface ConsultationItem {
   descriptionEn: string;
   descriptionZh: string;
   imageSrc: string;
-  imageAlt: string;
+  imageAlt?: string;
+  imageAltEn?: string;
+  imageAltZh?: string;
   ctaTextEn: string;
   ctaTextZh: string;
 }

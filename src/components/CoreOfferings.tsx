@@ -37,8 +37,8 @@ export const CoreOfferings: React.FC<CoreOfferingsProps> = ({
           </p>
         </div>
 
-        {/* 3-Column Grid rendering via .map() */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* 3-Device Responsive Grid: Mobile (1 col), Tablet (2 cols), Desktop (3 cols) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {servicesData.map((service, index) => (
             <div
               key={service.id}
@@ -51,7 +51,11 @@ export const CoreOfferings: React.FC<CoreOfferingsProps> = ({
                 title={language === 'zh' ? service.titleZh : service.titleEn}
                 description={language === 'zh' ? service.descriptionZh : service.descriptionEn}
                 imageSrc={service.imageSrc}
-                imageAlt={service.imageAlt}
+                imageAlt={
+                  language === 'zh'
+                    ? service.imageAltZh || service.imageAlt || ''
+                    : service.imageAltEn || service.imageAlt || ''
+                }
                 ctaText={language === 'zh' ? service.ctaTextZh : service.ctaTextEn}
                 onAction={() => onSelectService(service)}
               />

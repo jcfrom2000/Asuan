@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+import { getAssetUrl } from '../utils/assets';
 
 interface TherapistSpotlightProps {
   language: Language;
@@ -31,15 +32,12 @@ export const TherapistSpotlight: React.FC<TherapistSpotlightProps> = ({
                   className="absolute -top-4 -left-4 w-full h-full rounded-2xl"
                   style={{ backgroundColor: 'rgb(235, 216, 203)' }}
                 />
+                {/* Fixed aspect ratio container (aspect-[4/5]) to guarantee CLS = 0 */}
                 <div className="relative rounded-2xl overflow-hidden shadow-sm aspect-[4/5] bg-surface">
                   <img
                     className="w-full h-full object-cover object-[50%_15%]"
-                    alt={
-                      language === 'zh'
-                        ? '曹翱璇 (Jessica Cao), LCSW, LCPC, CST - 芝加哥多语种心理治疗师与认证性治疗师'
-                        : 'Jessica Cao, LCSW, LCPC, CST - Licensed Psychotherapist and Certified Sex Therapist in Chicago'
-                    }
-                    src="/assets/aistudio/imgi_13_Cao_professionl_photo_589c0cba.jpg"
+                    alt={t.imageAlts.therapistPortrait}
+                    src={getAssetUrl('assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg')}
                     loading="lazy"
                     decoding="async"
                   />

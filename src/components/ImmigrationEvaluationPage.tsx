@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowRight, ShieldCheck, Scale, Globe, FileText, CheckCircle2, ChevronRight, Plus, Minus, HeartHandshake, BookOpen } from 'lucide-react';
 import { Language } from '../types';
+import { translations } from '../data/translations';
+import { getAssetUrl } from '../utils/assets';
 
 interface ImmigrationEvaluationPageProps {
   language: Language;
@@ -18,6 +20,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
   onNavigateToTab,
 }) => {
   const isZh = language === 'zh';
+  const t = translations[language];
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
@@ -198,8 +201,10 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
         {/* Statue of Liberty Photography */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=2200&q=85"
-            alt={isZh ? '自由女神像与蓝天白云' : 'Statue of Liberty in bright sunlight with sky and clouds'}
+            src={getAssetUrl('assets/images/overstream-therapy-immigration-statue-of-liberty.jpg')}
+            alt={t.imageAlts.evalStatueOfLiberty}
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-center scale-105 animate-subtleZoom"
           />
           {/* Dual-layered gradient overlay */}
@@ -375,8 +380,10 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80"
-                  alt={isZh ? '美国国旗灯光艺术装置前行走的人群剪影' : 'Silhouettes of diverse community walking in front of illuminated American flag installation'}
+                  src={getAssetUrl('assets/images/overstream-therapy-immigration-court-community-flag.jpg')}
+                  alt={t.imageAlts.evalAmericanFlag}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -596,8 +603,10 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80"
-                  alt={isZh ? '支持社区移民包容的和平标语牌' : 'Community members advocating with sign: LOVE THY NEIGHBOR. (ALL OF THEM!)'}
+                  src={getAssetUrl('assets/images/overstream-therapy-immigration-love-thy-neighbor-rally.jpg')}
+                  alt={t.imageAlts.evalLoveThyNeighbor}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />

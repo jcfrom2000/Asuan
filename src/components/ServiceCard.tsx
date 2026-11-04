@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetUrl } from '../utils/assets';
 
 interface ServiceCardProps {
   category: string;
@@ -19,15 +20,18 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   ctaText,
   onAction,
 }) => {
+  const resolvedSrc = getAssetUrl(imageSrc);
+
   return (
     <div className="group flex flex-col bg-surface-container-low rounded-2xl overflow-hidden hover:bg-surface-container transition-all duration-300 shadow-xs hover:shadow-md border border-[#2e382b]/5">
-      {/* 4:3 Image Container with Soft Zoom on Hover */}
+      {/* 4:3 Explicit Aspect Ratio Image Container to guarantee CLS = 0 */}
       <div className="aspect-[4/3] w-full overflow-hidden bg-surface-container">
         <img
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           alt={imageAlt}
-          src={imageSrc}
+          src={resolvedSrc}
           loading="lazy"
+          decoding="async"
         />
       </div>
 

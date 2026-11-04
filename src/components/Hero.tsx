@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+import { getAssetUrl } from '../utils/assets';
 
 interface HeroProps {
   language: Language;
@@ -20,12 +21,8 @@ export const Hero: React.FC<HeroProps> = ({
     >
       {/* Full-bleed Ambient Background Image (Optimized for LCP and Image SEO) */}
       <img
-        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
-        alt={
-          language === 'zh'
-            ? '宁静自然的晨曦与舒缓林泉水流 - OverStream Therapy 在溪心理'
-            : 'Tranquil natural dawn landscape with calm flowing water - OverStream Therapy'
-        }
+        src={getAssetUrl('assets/images/overstream-therapy-chicago-dawn-river-landscape-hero.jpg')}
+        alt={t.imageAlts.heroLandscape}
         fetchPriority="high"
         decoding="async"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"

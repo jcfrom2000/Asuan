@@ -3,9 +3,14 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({ command }) => {
+  // In development (dev server), base is '/' so preview runs at root without error.
+  // In production build for GitHub Pages repo Asuan, base defaults to '/Asuan/'.
+  const isDev = command === 'serve';
+  const base = isDev ? '/' : (process.env.BASE_URL || '/Asuan/');
+
   return {
-    base: '/Asuan/', 
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

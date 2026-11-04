@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { Mail, Phone, Calendar, Clock, MapPin, Send, CheckCircle2, ArrowRight, ExternalLink, ShieldAlert } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
+import { Mail, Phone, Calendar, Clock, MapPin, Send, CheckCircle2, ArrowRight, ExternalLink, ShieldAlert, Lock } from 'lucide-react';
 
 interface ContactPageProps {
   language: Language;
@@ -84,12 +85,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     <div className="w-full flex flex-col bg-surface">
       {/* 1. Hero Header Section with Floral Poppies Vignette */}
       <section className="relative w-full overflow-hidden py-24 md:py-32 bg-surface-container-low min-h-[460px] md:min-h-[520px] flex items-center justify-center">
-        {/* Full-bleed studio background photo */}
+        {/* Full-bleed studio background photo (CLS=0 with fixed container) */}
         <div className="absolute inset-0 z-0">
           <img
             className="w-full h-full object-cover object-center"
-            alt="Delicate white poppies on warm sand studio background"
-            src="https://images.squarespace-cdn.com/content/v1/671c483a539b5c68f696ed16/1729906747576-E2VOAXJN0S9QJE1W6RX5/image-asset.jpg?format=2500w"
+            alt={t.imageAlts.contactPoppies}
+            src={getAssetUrl('assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -139,36 +142,73 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1060px] mx-auto pt-2">
             {/* Email Card */}
-            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-center items-center space-y-2 border border-surface-container/60 shadow-xs hover:border-secondary/40 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary mb-1">
-                <Mail className="w-6 h-6" />
+            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-between items-center space-y-3 border border-surface-container/60 shadow-xs hover:border-secondary/40 transition-colors">
+              <div className="flex flex-col items-center space-y-2">
+                <div className="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary mb-1">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <p className="font-label-md text-xs uppercase tracking-wider text-secondary font-medium">
+                  {cp.directSection.emailLabel}
+                </p>
+                <a
+                  href={`mailto:${cp.directSection.emailAddress}`}
+                  className="font-body-lg text-sm sm:text-base font-medium text-primary hover:text-secondary transition-colors break-all select-all"
+                >
+                  {cp.directSection.emailAddress}
+                </a>
               </div>
-              <p className="font-label-md text-xs uppercase tracking-wider text-secondary font-medium">
-                {cp.directSection.emailLabel}
+              <p className="font-body-sm text-xs text-on-surface-variant/80">
+                {language === 'zh' ? '欢迎随时致信咨询详情' : 'Response within 1-2 business days'}
               </p>
-              <a
-                href={`mailto:${cp.directSection.emailAddress}`}
-                className="font-body-lg text-base sm:text-lg font-medium text-primary hover:text-secondary transition-colors break-all select-all"
-              >
-                {cp.directSection.emailAddress}
-              </a>
             </div>
 
             {/* Phone Card */}
-            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-center items-center space-y-2 border border-surface-container/60 shadow-xs hover:border-secondary/40 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary mb-1">
-                <Phone className="w-6 h-6" />
+            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-between items-center space-y-3 border border-surface-container/60 shadow-xs hover:border-secondary/40 transition-colors">
+              <div className="flex flex-col items-center space-y-2">
+                <div className="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary mb-1">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <p className="font-label-md text-xs uppercase tracking-wider text-secondary font-medium">
+                  {cp.directSection.phoneLabel}
+                </p>
+                <a
+                  href="tel:3129670117"
+                  className="font-body-lg text-sm sm:text-base font-medium text-primary hover:text-secondary transition-colors select-all"
+                >
+                  {cp.directSection.phoneNumber}
+                </a>
               </div>
-              <p className="font-label-md text-xs uppercase tracking-wider text-secondary font-medium">
-                {cp.directSection.phoneLabel}
+              <p className="font-body-sm text-xs text-on-surface-variant/80">
+                {language === 'zh' ? '支持语音留言与加密短信' : 'Confidential voicemail & SMS'}
               </p>
+            </div>
+
+            {/* Existing Clients Portal Card (SimplePractice) */}
+            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-between items-center space-y-3 border border-surface-container/60 shadow-xs hover:border-[#a35e3e]/40 transition-colors">
+              <div className="flex flex-col items-center space-y-2">
+                <div className="w-12 h-12 rounded-full bg-[#f3e9e2] flex items-center justify-center text-[#a35e3e] mb-1">
+                  <Lock className="w-6 h-6" />
+                </div>
+                <p className="font-label-md text-xs uppercase tracking-wider text-[#a35e3e] font-medium">
+                  {cp.directSection.portalLabel}
+                </p>
+                <p className="font-body-lg text-sm sm:text-base font-medium text-primary">
+                  {cp.directSection.portalTitle}
+                </p>
+                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                  {cp.directSection.portalDesc}
+                </p>
+              </div>
               <a
-                href="tel:3129670117"
-                className="font-body-lg text-base sm:text-lg font-medium text-primary hover:text-secondary transition-colors select-all"
+                href="https://overstreamtherapy.clientsecure.me/sign-in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary hover:bg-primary-container text-xs font-label-md font-medium transition-colors shadow-2xs"
               >
-                {cp.directSection.phoneNumber}
+                <span>{cp.directSection.portalBtn}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
@@ -402,12 +442,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             {/* Right Card: High-resolution Styled Chicago Map */}
             <div className="h-full flex flex-col">
               <div className="relative w-full h-full min-h-[340px] md:min-h-full rounded-2xl overflow-hidden shadow-xs border border-surface-container flex flex-col group">
-                <div
-                  className="w-full h-full min-h-[340px] md:min-h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-102"
-                  style={{
-                    backgroundImage:
-                      'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDt7XAGercV7oi81HfKsrWMrlB-6DLZpwf_nv01BWZ4vh9i_hqu_mUC95kWAmVveH7mz8ortkHsZeWDz79yBz-BCl6fS66GAEsDZhxqP8lca-uMnTjRldIu3pZlKjzxylQ7Q9OtZALtxIlJXN9lKsne3BLb2cvoBnIJtegXghfkquApMJoSKfkokWvttT-DfQLZULctd1gQRoWny3Anot71TN351Em0FzseLRcNHPs")',
-                  }}
+                <img
+                  className="w-full h-full min-h-[340px] md:min-h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
+                  alt={t.imageAlts.chicagoOfficeMap}
+                  src={getAssetUrl('assets/images/overstream-therapy-chicago-monadnock-office-location-map.jpg')}
+                  loading="lazy"
+                  decoding="async"
                 />
                 {/* Gentle Tint Overlay */}
                 <div className="absolute inset-0 bg-primary/10 pointer-events-none" />

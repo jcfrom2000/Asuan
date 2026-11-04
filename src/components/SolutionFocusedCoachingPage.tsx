@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, Compass, Sparkles, CheckCircle2, AlertCircle, Calendar, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
+import { translations } from '../data/translations';
+import { getAssetUrl } from '../utils/assets';
 
 interface SolutionFocusedCoachingPageProps {
   language: Language;
@@ -18,6 +20,7 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
   onNavigateToTab,
 }) => {
   const isZh = language === 'zh';
+  const t = translations[language];
 
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1e251d]">
@@ -51,8 +54,10 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
         {/* Serene River & Mountain Sunrise Photography */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2200&q=85"
-            alt={isZh ? '晨曦中流经群山的宁静溪流' : 'Misty river winding through mountains at sunrise'}
+            src={getAssetUrl('assets/images/overstream-therapy-solution-focused-sunrise-mountains.jpg')}
+            alt={t.imageAlts.coachingSunrise}
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-center scale-105 animate-subtleZoom"
           />
           {/* Dual-layered refined gradient overlay */}
@@ -97,8 +102,10 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-92 md:h-92 rounded-full p-2.5 bg-gradient-to-br from-[#e8d5c4] via-[#fafaf4] to-[#c7d3c0] shadow-xl">
                 <div className="w-full h-full rounded-full overflow-hidden relative shadow-inner">
                   <img
-                    src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80"
-                    alt={isZh ? '在自然中静心休憩与释压的女性' : 'Woman resting with eyes closed outdoors in serene dappled sunlight'}
+                    src={getAssetUrl('assets/images/overstream-therapy-solution-focused-mindfulness-sunlight.jpg')}
+                    alt={t.imageAlts.coachingMindfulness}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
                   />
                 </div>
@@ -227,8 +234,10 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
             <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80"
-                  alt={isZh ? '黎明晨光中跃向金色太阳的勇敢身影' : 'Silhouette of person leaping joyfully towards the golden rising sun across mountain peaks'}
+                  src={getAssetUrl('assets/images/overstream-therapy-solution-focused-empowerment-silhouette.jpg')}
+                  alt={t.imageAlts.coachingSilhouette}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
@@ -246,8 +255,10 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
             <div className="lg:col-span-5 order-2 lg:order-1 reveal-on-scroll">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80"
-                  alt={isZh ? '现代都市玻璃幕墙前飘扬的美国国旗' : 'American flags in front of modern city glass skyscrapers and sky'}
+                  src={getAssetUrl('assets/images/overstream-therapy-solution-focused-visa-skyscrapers.jpg')}
+                  alt={t.imageAlts.coachingSkyscraper}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
@@ -470,8 +481,10 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
             <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80"
-                  alt={isZh ? '阳光洒入的宁静心理咨询室一角，配有舒适单人扶手椅与绿植' : 'Atmospheric therapy and consulting room interior with mid-century modern armchairs, large sunny window, and plants'}
+                  src={getAssetUrl('assets/images/overstream-therapy-solution-focused-consulting-office.jpg')}
+                  alt={t.imageAlts.coachingOffice}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />

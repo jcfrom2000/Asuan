@@ -9,6 +9,8 @@ import {
   Languages,
 } from 'lucide-react';
 import { Language } from '../types';
+import { translations } from '../data/translations';
+import { getAssetUrl } from '../utils/assets';
 
 interface AboutPageProps {
   language: Language;
@@ -21,6 +23,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenBooking,
 }) => {
   const isZh = language === 'zh';
+  const t = translations[language];
 
   return (
     <div className="flex flex-col w-full bg-surface">
@@ -107,12 +110,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 style={{ backgroundColor: '#ebded2' }}
               />
 
-              {/* Foreground Image Vessel */}
-              <div className="relative overflow-hidden rounded-2xl bg-surface-container shadow-md border border-[#e5ded4]">
+              {/* Foreground Image Vessel - Aspect-constrained for CLS = 0 */}
+              <div className="relative overflow-hidden rounded-2xl bg-surface-container shadow-md border border-[#e5ded4] aspect-[4/5] sm:aspect-auto sm:h-[520px]">
                 <img
-                  className="w-full h-[520px] object-cover object-[50%_15%]"
-                  alt={isZh ? '曹翱璇 Jessica Cao 心理治疗师个人肖像' : 'Editorial portrait of Jessica Cao, psychotherapist'}
-                  src="/assets/aistudio/imgi_13_Cao_professionl_photo_589c0cba.jpg"
+                  className="w-full h-full object-cover object-[50%_15%]"
+                  alt={t.imageAlts.therapistPortrait}
+                  src={getAssetUrl('assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg')}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -229,8 +234,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.squarespace-cdn.com/content/v1/671c483a539b5c68f696ed16/1729906747576-E2VOAXJN0S9QJE1W6RX5/image-asset.jpg?format=2500w')",
+            backgroundImage: `url('${getAssetUrl('assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}')`,
             opacity: 0.85,
           }}
         />
@@ -266,13 +270,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               </p>
             </div>
 
-            {/* Circular Training Portrait */}
+            {/* Circular Training Portrait (Zero CLS with aspect-square) */}
             <div className="relative py-space-sm">
-              <div className="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full overflow-hidden mx-auto shadow-md border-4 border-surface-container-lowest bg-surface-container">
+              <div className="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] aspect-square rounded-full overflow-hidden mx-auto shadow-md border-4 border-surface-container-lowest bg-surface-container">
                 <img
                   className="w-full h-full object-cover object-[50%_25%]"
-                  alt={isZh ? '曹翱璇 Jessica 参加密歇根大学性健康证书项目' : 'Jessica Cao holding Talking About Sex Will Change The World at University of Michigan Sexual Health Certificate Program'}
-                  src="/assets/aistudio/imgi_6_IMG_4985_72af3023.jpg"
+                  alt={t.imageAlts.sexualHealthTraining}
+                  src={getAssetUrl('assets/images/overstream-therapy-michigan-ann-arbor-sexual-health-training-program.jpg')}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="text-center mt-space-sm">

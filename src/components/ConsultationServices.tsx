@@ -37,8 +37,8 @@ export const ConsultationServices: React.FC<ConsultationServicesProps> = ({
           </p>
         </div>
 
-        {/* 3-Column Grid rendering via .map() */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* 3-Device Responsive Grid: Mobile (1 col), Tablet (2 cols), Desktop (3 cols) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {communityData.map((item, index) => (
             <div
               key={item.id}
@@ -51,7 +51,11 @@ export const ConsultationServices: React.FC<ConsultationServicesProps> = ({
                 title={language === 'zh' ? item.titleZh : item.titleEn}
                 description={language === 'zh' ? item.descriptionZh : item.descriptionEn}
                 imageSrc={item.imageSrc}
-                imageAlt={item.imageAlt}
+                imageAlt={
+                  language === 'zh'
+                    ? item.imageAltZh || item.imageAlt || ''
+                    : item.imageAltEn || item.imageAlt || ''
+                }
                 ctaText={language === 'zh' ? item.ctaTextZh : item.ctaTextEn}
                 onAction={() => onSelectConsultation(item)}
               />
