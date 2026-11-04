@@ -108,20 +108,20 @@ const SEO_DATA: Record<PageRoute, Record<Language, { title: string; description:
   },
   community: {
     en: {
-      title: 'Consultation & Community | Coaching, Evaluations & Groups | OverStream Therapy',
+      title: 'Community Workshops & Groups Spaces | “Healing happens in connection” | OverStream Therapy',
       description:
-        'Solution-focused coaching, culturally responsive immigration evaluations, and community workshops by Jessica Cao, LCSW.',
+        '“Healing happens in connection.” Customized psychoeducational workshops, speaking engagements, and supportive therapy groups in Chicago & Telehealth by Jessica Cao, LCSW, CST.',
       canonicalPath: '/community',
       keywords:
-        'Immigration psychological evaluation Chicago, solution-focused coaching, therapy groups, intercultural coaching',
+        'Community Workshops Chicago, Chinese Women Desire Intimacy Group, UChicago Mandarin support group, Social Work Students support group, EDBI body acceptance workshop, Roots and Resilience therapy',
     },
     zh: {
-      title: '我与社区的工作 | 短期焦点辅导、移民评估与团体讲座 | OverStream Therapy 在溪心理',
+      title: '团体辅导与社区工作坊空间 (Community Workshops & Groups Spaces) | OverStream Therapy 在溪心理',
       description:
-        '面向生活与职业转折的短期焦点辅导、移民法律心理评估（三语直接面谈）、治疗与支持性社群团体。',
+        '“疗愈发生于深层联结之中。”为高校、机构与多元文化社群量身定制的心理教育工作坊、华人女性情欲与亲密关系小组、芝大留学生支持小组及企事业单位定制演讲。',
       canonicalPath: '/zh/community',
       keywords:
-        '短期焦点辅导, 移民心理评估报告, 芝加哥移民心理医生, 团体辅导与工作坊, 留学生职业辅导',
+        '社区工作坊, 团体心理咨询芝加哥, 华人女性亲密关系小组, 芝加哥大学中文心理支持, 社工留学生支持小组, 创伤疗愈工作坊, 身体意象支持, 在溪心理',
     },
   },
   faq: {

@@ -245,8 +245,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               ? '“我的佳偶，你全然美丽，毫无瑕疵。”'
               : '“You are altogether beautiful, my love; there is no flaw in you.”'}
           </blockquote>
-          <cite className="mt-space-sm font-label-md text-label-md uppercase tracking-widest text-secondary not-italic font-medium">
-            {isZh ? '雅歌 4:7 • Song of Solomon 4:7' : 'Song of Solomon 4:7'}
+          <cite className="mt-space-sm font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] text-[#a35e3e] not-italic font-medium">
+            {isZh ? '— 雅歌 4:7 • Song of Solomon 4:7' : '— Song of Solomon 4:7'}
           </cite>
         </div>
       </section>
@@ -594,12 +594,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <span className="font-headline-md text-6xl text-secondary-fixed-dim/60 font-serif leading-none select-none mb-space-sm">
             “
           </span>
-          <blockquote className="font-headline-lg text-[26px] md:text-[36px] md:leading-[50px] font-serif font-normal text-inverse-on-surface max-w-3xl leading-snug">
+          <blockquote className="font-quote-lead text-xl sm:text-2xl md:text-[28px] font-normal italic text-inverse-on-surface max-w-3xl leading-relaxed">
             {isZh
-              ? '你就像一个装满水的水囊沙发——柔软、舒适、安全，而且完全顺应我的形状。'
-              : 'You are like a beanbag filled with water — soft, comfortable, safe, and adapts to my shape.'}
+              ? '“你就像一个装满水的水囊沙发——柔软、舒适、安全，而且完全顺应我的形状。”'
+              : '“You are like a beanbag filled with water — soft, comfortable, safe, and adapts to my shape.”'}
           </blockquote>
-          <cite className="mt-space-md font-label-md text-label-md uppercase tracking-widest text-primary-fixed font-medium not-italic">
+          <cite className="mt-space-md font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] text-[#d6a38b] font-medium not-italic">
             {isZh
               ? '— 长期心理治疗来访者反馈与评价'
               : '— Words from a Long-Term Psychotherapy Client'}

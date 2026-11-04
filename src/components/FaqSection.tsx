@@ -46,7 +46,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ language, onNavigateToFa
         </div>
 
         {/* Accordion Preview List */}
-        <div className="space-y-3.5">
+        <div className="reveal-on-scroll reveal-delay-100 space-y-3.5">
           {previewFaqs.map((faq, index) => {
             const isOpen = openId === faq.id;
             const question = isZh ? faq.questionZh : faq.questionEn;
@@ -56,9 +56,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ language, onNavigateToFa
             return (
               <div
                 key={faq.id}
-                className={`reveal-on-scroll ${
-                  index === 1 ? 'reveal-delay-100' : index === 2 ? 'reveal-delay-200' : index === 3 ? 'reveal-delay-300' : ''
-                } rounded-xl overflow-hidden transition-all duration-200 border ${
+                className={`rounded-xl overflow-hidden transition-all duration-200 border ${
                   isOpen
                     ? 'bg-[#fafaf4] border-[#2e382b]/15 shadow-xs'
                     : 'bg-white border-[#2e382b]/8 hover:border-[#2e382b]/15 shadow-2xs'

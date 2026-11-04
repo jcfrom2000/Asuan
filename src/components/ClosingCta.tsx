@@ -27,7 +27,7 @@ export const ClosingCta: React.FC<ClosingCtaProps> = ({
             {t.closingCta.quote}
           </blockquote>
           <p
-            className="reveal-on-scroll reveal-delay-100 font-label-md text-xs sm:text-sm uppercase tracking-[0.2em]"
+            className="reveal-on-scroll reveal-delay-100 font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] font-medium"
             style={{ color: 'rgb(214, 163, 139)' }}
           >
             {t.closingCta.author}

@@ -24,31 +24,6 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
 
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1e251d]">
-      {/* 0. Elegant Breadcrumb Bar */}
-      <nav aria-label="Breadcrumb" className="w-full bg-[#f4f2ea]/70 border-b border-[#2e382b]/8 py-3">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex items-center gap-2 text-xs font-label-md text-on-surface-variant/80">
-          <button
-            type="button"
-            onClick={onNavigateHome}
-            className="hover:text-primary transition-colors cursor-pointer"
-          >
-            {isZh ? '首页' : 'Home'}
-          </button>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40 shrink-0" />
-          <button
-            type="button"
-            onClick={() => onNavigateToTab?.('community')}
-            className="hover:text-primary transition-colors cursor-pointer"
-          >
-            {isZh ? '合作服务' : 'Work With Me'}
-          </button>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40 shrink-0" />
-          <span className="text-[#a35e3e] font-medium truncate">
-            {isZh ? '短期焦点辅导' : 'Solution-Focused Coaching'}
-          </span>
-        </div>
-      </nav>
-
       {/* 1. Hero Section */}
       <header className="relative w-full min-h-[520px] md:min-h-[580px] lg:min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
         {/* Serene River & Mountain Sunrise Photography */}
@@ -67,16 +42,11 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
 
         {/* Content */}
         <div className="relative z-10 max-w-[1000px] mx-auto px-6 sm:px-8 py-20 text-center flex flex-col items-center">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-[#fbf7f0] text-xs font-label-md tracking-widest uppercase mb-6 border border-white/20 shadow-xs">
-            <Compass className="w-3.5 h-3.5 text-[#e8b598]" />
-            {isZh ? '短期焦点赋能 • 战略破局' : 'Strategic Action & Career Guidance'}
-          </span>
-
           <h1 className="font-headline-lg font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#fafaf4] tracking-tight leading-[1.15] mb-5 max-w-3xl drop-shadow-sm">
             {isZh ? '短期焦点辅导' : 'Solution-Focused Coaching'}
           </h1>
 
-          <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-light max-w-2xl leading-relaxed mb-8 tracking-wide">
+          <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-2xl leading-relaxed mb-8">
             {isZh
               ? '高度聚焦、以行动为导向的短期赋能干预'
               : 'highly targeted, action-oriented, short-term intervention'}
@@ -491,7 +461,7 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
       </section>
 
       {/* 7. Section 6: Rilke Quote Banner & CTA */}
-      <section className="relative w-full py-24 md:py-32 bg-[#424d3f] text-[#fbf7f0] overflow-hidden">
+      <section className="relative w-full py-20 md:py-28 bg-[#2e382b] text-[#fbf7f0] overflow-hidden">
         {/* Subtle decorative botanical atmosphere */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -504,36 +474,27 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-[860px] mx-auto px-6 sm:px-10 text-center flex flex-col items-center">
-          <blockquote className="space-y-4 mb-8">
-            <p className="font-headline-md font-light text-xl sm:text-2xl md:text-3xl text-[#fafaf4] leading-relaxed tracking-wide">
-              {isZh ? (
-                <>
-                  “也许我们生活中一切的恶龙都是公主们，她们只是等候着，美丽而勇敢地看一看我们。
-                  <br className="hidden sm:inline" />
-                  也许一切恐怖的事物在最深处是无助的，向我们要求救助。”
-                </>
-              ) : (
-                <>
-                  &ldquo;Perhaps all the dragons in our lives are princesses who are only waiting to see us act, just once, with beauty and courage.
-                  <br className="hidden sm:inline" />
-                  Perhaps everything that frightens us is, in its deepest essence, something helpless that wants our love.&rdquo;
-                </>
-              )}
-            </p>
-            <footer className="font-label-md text-xs sm:text-sm text-[#e0e4dc] tracking-widest uppercase opacity-85">
-              {isZh ? '—— 莱纳·玛利亚·里尔克，《给青年诗人的信》' : '— Rainer Maria Rilke, Letters to a Young Poet'}
-            </footer>
+        <div className="relative z-10 max-w-[960px] mx-auto px-5 md:px-16 text-center flex flex-col items-center">
+          <blockquote className="reveal-text-soft font-quote-lead text-xl sm:text-2xl md:text-[26px] font-normal text-white/95 italic leading-relaxed max-w-3xl mx-auto whitespace-pre-line mb-4">
+            {t.closingCta.quote}
           </blockquote>
-
-          <button
-            type="button"
-            onClick={onOpenContact}
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#fbf7f0] text-primary hover:bg-white transition-all font-label-md text-sm font-medium shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer"
+          <p
+            className="reveal-on-scroll reveal-delay-100 font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] mb-8 font-medium"
+            style={{ color: 'rgb(214, 163, 139)' }}
           >
-            <span>{isZh ? '与我联系' : 'Get In Touch'}</span>
-            <ArrowRight className="w-4 h-4 text-[#a35e3e]" />
-          </button>
+            {t.closingCta.author}
+          </p>
+
+          <div className="reveal-on-scroll reveal-delay-200 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={onOpenContact}
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#fafaf4] text-[#192317] hover:bg-[#eeeee9] transition-all font-label-md text-sm font-medium shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer"
+            >
+              <span>{isZh ? '与我联系' : 'Get In Touch'}</span>
+              <ArrowRight className="w-4 h-4 text-[#a35e3e]" />
+            </button>
+          </div>
         </div>
       </section>
     </article>

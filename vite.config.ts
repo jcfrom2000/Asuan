@@ -4,10 +4,9 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
-  // In development (dev server), base is '/' so preview runs at root without error.
-  // In production build for GitHub Pages repo Asuan, base defaults to '/Asuan/'.
-  const isDev = command === 'serve';
-  const base = isDev ? '/' : (process.env.BASE_URL || '/Asuan/');
+  // In development and AI Studio builds, base defaults to '/'.
+  // If BASE_URL is provided (e.g. CI/CD subpath deployment), it will use that.
+  const base = process.env.BASE_URL || '/';
 
   return {
     base,
@@ -18,6 +17,9 @@ export default defineConfig(({ command }) => {
       },
     },
     server: {
+      host: '0.0.0.0',
+      port: 3000,
+      allowedHosts: true,
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',

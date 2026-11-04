@@ -81,7 +81,7 @@ export const FaqAnswerView: React.FC<FaqAnswerViewProps> = ({ content, isZh }) =
                 {isLocation && <MapPin className="w-4 h-4 text-[#a35e3e]" />}
                 {isCoaching && <Compass className="w-4 h-4 text-[#4b6345]" />}
                 {isFuture && <CalendarClock className="w-4 h-4 text-[#7d6951]" />}
-                <h4 className="font-headline-md font-semibold text-primary text-base sm:text-[16px]">
+                <h4 className="font-body-md font-semibold text-primary text-base sm:text-[16px]">
                   {renderInlineFormatted(heading)}
                 </h4>
               </div>

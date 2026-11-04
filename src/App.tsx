@@ -19,6 +19,7 @@ import { AboutPage } from './components/AboutPage';
 import { FaqPage } from './components/FaqPage';
 import { SolutionFocusedCoachingPage } from './components/SolutionFocusedCoachingPage';
 import { ImmigrationEvaluationPage } from './components/ImmigrationEvaluationPage';
+import { CommunityWorkshopsPage } from './components/CommunityWorkshopsPage';
 import { updatePageSeo, PageRoute } from './utils/seo';
 import { useScrollReveal } from './utils/useScrollReveal';
 
@@ -54,7 +55,15 @@ function parseRouteFromLocation(pathname: string): {
     page = 'faq';
   } else if (pathWithoutLang === '/services' || pathWithoutLang === '/therapy-services') {
     page = 'services';
-  } else if (pathWithoutLang === '/community' || pathWithoutLang === '/community-services') {
+  } else if (
+    pathWithoutLang === '/community' ||
+    pathWithoutLang === '/community-services' ||
+    pathWithoutLang === '/community-workshops' ||
+    pathWithoutLang === '/workshops' ||
+    pathWithoutLang === '/groups' ||
+    pathWithoutLang === '/work-with-me/community-workshops' ||
+    pathWithoutLang === '/work-with-me/community'
+  ) {
     page = 'community';
   } else if (
     pathWithoutLang === '/solution-focused-coaching' ||
@@ -165,7 +174,15 @@ export default function App() {
     else if (tabId === 'about' || tabId === 'about-jessica') targetPage = 'about';
     else if (tabId === 'faq' || tabId === 'faqs') targetPage = 'faq';
     else if (tabId === 'services' || tabId === 'therapy-services') targetPage = 'services';
-    else if (tabId === 'community' || tabId === 'community-services') targetPage = 'community';
+    else if (
+      tabId === 'community' ||
+      tabId === 'community-services' ||
+      tabId === 'community-workshops' ||
+      tabId === 'groups-workshops' ||
+      tabId === 'groups' ||
+      tabId === 'workshops'
+    )
+      targetPage = 'community';
     else if (
       tabId === 'solution-focused-coaching' ||
       tabId === 'coaching' ||
@@ -213,6 +230,8 @@ export default function App() {
       handleSelectTab('solution-focused-coaching');
     } else if (item.id === 'immigration-evaluation') {
       handleSelectTab('immigration-evaluation');
+    } else if (item.id === 'groups-workshops' || item.id === 'community-workshops') {
+      handleSelectTab('community');
     } else {
       handleOpenBooking(item.titleEn);
     }
@@ -331,17 +350,15 @@ export default function App() {
         );
       case 'community':
         return (
-          <div className="flex flex-col w-full">
-            <ConsultationServices
-              language={language}
-              onSelectConsultation={handleSelectConsultation}
-            />
-            <ClosingCta
-              language={language}
-              onOpenBooking={() => handleOpenBooking()}
-              onOpenContact={() => handleSelectTab('contact')}
-            />
-          </div>
+          <CommunityWorkshopsPage
+            language={language}
+            onOpenBooking={(serviceName, prefillNote) =>
+              handleOpenBooking(serviceName || 'Community Workshops & Groups Spaces', prefillNote)
+            }
+            onOpenContact={() => handleSelectTab('contact')}
+            onNavigateHome={() => handleSelectTab('home')}
+            onNavigateToTab={(tabId) => handleSelectTab(tabId)}
+          />
         );
       case 'solution-focused-coaching':
         return (

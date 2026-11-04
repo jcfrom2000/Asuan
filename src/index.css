@@ -54,17 +54,17 @@
   --color-background: #fafaf4;
   --color-on-background: #1a1c19;
 
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-display-hero: "Playfair Display", Georgia, serif;
-  --font-headline-lg: "Playfair Display", Georgia, serif;
-  --font-headline-md: "Playfair Display", Georgia, serif;
-  --font-quote-lead: "Playfair Display", Georgia, serif;
-  --font-ticker-label: "Playfair Display", Georgia, serif;
-  --font-body-lg: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body-md: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body-sm: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-label-md: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif: "Playfair Display", "Songti SC", "Source Han Serif SC", "Noto Serif SC", STSong, "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --font-display-hero: "Playfair Display", "Songti SC", "Source Han Serif SC", "Noto Serif SC", STSong, "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  --font-headline-lg: "Playfair Display", "Songti SC", "Source Han Serif SC", "Noto Serif SC", STSong, "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  --font-headline-md: "Playfair Display", "Songti SC", "Source Han Serif SC", "Noto Serif SC", STSong, "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  --font-quote-lead: "Playfair Display", "Songti SC", "Source Han Serif SC", "Noto Serif SC", STSong, "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  --font-ticker-label: "Playfair Display", "Songti SC", "Source Han Serif SC", "Noto Serif SC", STSong, "PingFang SC", "Microsoft YaHei", Georgia, serif;
+  --font-body-lg: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-body-md: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-body-sm: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-label-md: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
 
   --spacing-space-xs: 0.375rem;
   --spacing-space-sm: 0.75rem;
@@ -86,6 +86,9 @@
     background-color: var(--color-surface);
     color: var(--color-on-surface);
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   ::selection {
@@ -135,6 +138,7 @@
 
 .font-quote-lead {
   font-family: var(--font-serif);
+  font-style: italic;
 }
 
 .text-quote-lead {

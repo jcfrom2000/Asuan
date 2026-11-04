@@ -44,7 +44,7 @@ export const TestimonialQuote: React.FC<TestimonialQuoteProps> = ({ language }) 
         </blockquote>
 
         <div className="reveal-on-scroll reveal-delay-200 pt-3">
-          <p className="font-label-md text-xs sm:text-sm uppercase tracking-widest text-on-surface-variant font-medium">
+          <p className="font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] text-on-surface-variant font-medium">
             {t.testimonial.attribution}
           </p>
         </div>
