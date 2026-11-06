@@ -25,34 +25,8 @@ export const TherapistSpotlight: React.FC<TherapistSpotlightProps> = ({
       >
         <div className="max-w-[1240px] mx-auto px-5 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            {/* Portrait Column with Off-Center Linen Card Backing */}
-            <div className="reveal-on-scroll lg:col-span-5 relative flex justify-center">
-              <div className="relative w-full max-w-sm">
-                <div
-                  className="absolute -top-4 -left-4 w-full h-full rounded-2xl"
-                  style={{ backgroundColor: 'rgb(235, 216, 203)' }}
-                />
-                {/* Fixed aspect ratio container (aspect-[4/5]) to guarantee CLS = 0 */}
-                <div className="relative rounded-2xl overflow-hidden shadow-sm aspect-[4/5] bg-surface">
-                  <img
-                    className="w-full h-full object-cover object-[50%_15%]"
-                    alt={t.imageAlts.therapistPortrait}
-                    src={getAssetUrl('assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg')}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                {/* Floating Credential Pill */}
-                <div className="absolute -bottom-4 right-4 bg-white px-4 py-2.5 rounded-full shadow-md border border-[#2e382b]/5">
-                  <p className="font-label-md text-xs sm:text-sm text-primary font-medium">
-                    {t.therapistSpotlight.badgeTag}
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Bio & Credentials Column */}
-            <div className="reveal-on-scroll reveal-delay-200 lg:col-span-7 space-y-5">
+            <div className="reveal-on-scroll lg:col-span-7 space-y-5">
               <div className="space-y-1.5">
                 <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-primary font-normal">
                   {t.therapistSpotlight.name}
@@ -88,6 +62,32 @@ export const TherapistSpotlight: React.FC<TherapistSpotlightProps> = ({
                   <span>{t.therapistSpotlight.readMoreCta}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
+              </div>
+            </div>
+
+            {/* Portrait Column with Off-Center Linen Card Backing (on Right) */}
+            <div className="reveal-on-scroll reveal-delay-200 lg:col-span-5 relative flex justify-center">
+              <div className="relative w-full max-w-sm">
+                <div
+                  className="absolute -top-4 -right-4 w-full h-full rounded-2xl"
+                  style={{ backgroundColor: 'rgb(235, 216, 203)' }}
+                />
+                {/* Fixed aspect ratio container (aspect-[4/5]) to guarantee CLS = 0 */}
+                <div className="relative rounded-2xl overflow-hidden shadow-sm aspect-[4/5] bg-surface">
+                  <img
+                    className="w-full h-full object-cover object-[50%_15%]"
+                    alt={t.imageAlts.therapistPortrait}
+                    src={getAssetUrl('assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg')}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                {/* Floating Credential Pill */}
+                <div className="absolute -bottom-4 left-4 bg-white px-4 py-2.5 rounded-full shadow-md border border-[#2e382b]/5">
+                  <p className="font-label-md text-xs sm:text-sm text-primary font-medium">
+                    {t.therapistSpotlight.badgeTag}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

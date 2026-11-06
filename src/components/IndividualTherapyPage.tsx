@@ -16,16 +16,18 @@ export const IndividualTherapyPage: React.FC<IndividualTherapyPageProps> = ({
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1e251d]">
       {/* 1. Hero Section */}
-      <header className="relative w-full min-h-[520px] md:min-h-[580px] lg:min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
+      <header className="relative w-full min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src={getAssetUrl('assets/aistudio/image_1726e4e2.png')}
             alt="Individual Therapy - White Poppies Bloom"
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover object-center scale-105 animate-subtleZoom"
+            className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.03] scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#182017]/75 via-[#182017]/55 to-[#182017]/85" />
+          {/* Ambient Dark Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#182017]/80 via-[#182017]/60 to-[#182017]/85" />
           <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#182017]/30 to-[#182017]/80" />
         </div>
 
@@ -35,7 +37,7 @@ export const IndividualTherapyPage: React.FC<IndividualTherapyPageProps> = ({
           </h1>
 
           <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-3xl leading-relaxed mb-8 drop-shadow-sm">
-            A culturally affirming, trauma-informed space for individuals navigating anxiety, depression, past trauma, or cross-cultural identity struggles.
+            A culturally responsive, trauma-informed space for anxiety, depression, trauma, relationship patterns, identity questions, and cross-cultural stress.
           </p>
 
           <button

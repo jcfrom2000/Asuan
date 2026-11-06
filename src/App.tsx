@@ -528,11 +528,7 @@ export default function App() {
             />
 
             {/* 10. Closing CTA with Rilke Quote */}
-            <ClosingCta
-              language={language}
-              onOpenBooking={() => handleOpenBooking()}
-              onOpenContact={() => handleSelectTab('contact')}
-            />
+            <ClosingCta language={language} />
           </div>
         );
     }

@@ -39,8 +39,8 @@ export const ConsultationSupervisionPage: React.FC<ConsultationSupervisionPagePr
 
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1a1c19] selection:bg-[#f3dfce] selection:text-[#231a0f]">
-      {/* 1. HERO SECTION - Mountain Canyon River Background */}
-      <header className="relative w-full min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#1a2328]">
+      {/* 1. Hero Header Section */}
+      <header className="relative w-full min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden bg-[#1a2328]">
         {/* Background Image: Mountain gorge with river rapids */}
         <div className="absolute inset-0 z-0">
           <img
@@ -51,13 +51,13 @@ export const ConsultationSupervisionPage: React.FC<ConsultationSupervisionPagePr
             className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.04]"
           />
           {/* Responsive Editorial Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#11191f]/85 via-[#11191f]/60 md:via-[#11191f]/35 to-transparent" />
-          <div className="absolute inset-0 bg-black/15 md:bg-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#11191f]/80 via-[#11191f]/60 to-[#11191f]/85" />
+          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#11191f]/40 to-[#11191f]/80" />
         </div>
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-[1240px] w-full mx-auto px-5 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-20 md:py-24">
-          <div className="max-w-2xl text-left">
+          <div className="max-w-3xl text-center mx-auto flex flex-col items-center">
             {/* Headline: Exact text from reference mockup */}
             <h1 className="font-headline-lg font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#fafaf4] tracking-tight leading-[1.14] mb-4 sm:mb-6 drop-shadow-sm">
               {isZh ? '临床个案督导与同行咨询' : 'Clinical Supervision & Consultation'}

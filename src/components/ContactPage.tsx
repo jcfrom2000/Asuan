@@ -84,7 +84,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   return (
     <div className="w-full flex flex-col bg-surface">
       {/* 1. Hero Header Section with Floral Poppies Vignette */}
-      <section className="relative w-full overflow-hidden py-24 md:py-32 bg-gradient-to-b from-[#f2ebe2] via-[#ebe2d7] to-[#fafaf4] min-h-[460px] md:min-h-[520px] flex items-center justify-center">
+      <section className="relative w-full overflow-hidden py-24 md:py-32 bg-[#1c241b] min-h-[460px] md:min-h-[520px] flex items-center justify-center">
         {/* Full-bleed studio background photo (CLS=0 with fixed container) */}
         <div className="absolute inset-0 z-0">
           <img
@@ -96,26 +96,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           />
         </div>
 
-        {/* Ambient Gradient Overlay for Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-transparent to-surface/40 pointer-events-none" />
+        {/* Ambient Dark Gradient Overlay for High Contrast White Text */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/65 pointer-events-none" />
 
         {/* Hero Title & Subtext */}
         <div className="relative z-10 max-w-[1240px] mx-auto px-5 md:px-16 w-full text-center space-y-3">
-          <div>
-            <span
-              className="font-label-md uppercase tracking-widest text-xs font-medium"
-              style={{ color: 'rgb(163, 94, 62)', display: 'inline-block' }}
-            >
-              {cp.heroTag}
-            </span>
-          </div>
-
-          <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl text-primary font-normal tracking-tight max-w-xl mx-auto leading-tight md:leading-[1.2] drop-shadow-xs">
+          <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl text-white font-normal tracking-tight max-w-xl mx-auto leading-tight md:leading-[1.2] drop-shadow-sm">
             {cp.heroTitle}
           </h1>
 
           <div className="max-w-xl mx-auto pt-2">
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant max-w-lg mx-auto leading-relaxed">
+            <p className="font-body-md text-sm sm:text-base text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-sm">
               {language === 'zh'
                 ? '在安详与被倾听的对话中，开启属于您的心理修护与自我重逢。'
                 : 'A safe, culturally grounding space to explore questions, share what hurts, and begin with unhurried care.'}

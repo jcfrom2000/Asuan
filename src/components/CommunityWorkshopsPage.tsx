@@ -147,7 +147,8 @@ export const CommunityWorkshopsPage: React.FC<CommunityWorkshopsPageProps> = ({
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1a1c19] selection:bg-[#f3dfce] selection:text-[#231a0f]">
       {/* 1. HERO SECTION - Exactly matching the screenshot */}
-      <header className="relative w-full min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#24211a]">
+      {/* 1. Hero Header Section */}
+      <header className="relative w-full min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden bg-[#24211a]">
         {/* Background Image: Yellow floral bouquet in green mug on white stool */}
         <div className="absolute inset-0 z-0">
           <img
@@ -159,27 +160,27 @@ export const CommunityWorkshopsPage: React.FC<CommunityWorkshopsPageProps> = ({
             }
             fetchPriority="high"
             decoding="async"
-            className="w-full h-full object-cover object-[center_35%] sm:object-[center_30%] md:object-[75%_35%] lg:object-[82%_35%] filter brightness-[0.94] contrast-[1.03]"
+            className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.03]"
           />
-          {/* Responsive Editorial Warm Gradient Overlay: Ensures text is deeply readable across mobile, tablet, and desktop while allowing glowing floral tones to shine */}
-          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#171a14]/85 via-[#171a14]/55 md:via-[#171a14]/35 to-transparent" />
-          <div className="absolute inset-0 bg-black/10 md:bg-transparent" />
+          {/* Responsive Editorial Warm Gradient Overlay: Ensures centered text is deeply readable */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#171a14]/80 via-[#171a14]/60 to-[#171a14]/85" />
+          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#171a14]/40 to-[#171a14]/80" />
         </div>
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-[1240px] w-full mx-auto px-5 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-20 md:py-24">
-          <div className="max-w-2xl text-left">
-            {/* Headline: Exact text from screenshot */}
+          <div className="max-w-3xl text-center mx-auto flex flex-col items-center">
+            {/* Headline */}
             <h1 className="font-headline-lg font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#fafaf4] tracking-tight leading-[1.12] mb-4 sm:mb-6 drop-shadow-sm">
               {isZh ? '团体辅导与社区空间' : 'Community Workshops & Groups Spaces'}
             </h1>
 
-            {/* Sub-quote: Exact quote from screenshot */}
+            {/* Sub-quote */}
             <p className="font-headline-md italic text-xl sm:text-2xl md:text-3xl text-[#f3dfce] font-normal tracking-wide mb-8 sm:mb-10 leading-relaxed">
               {isZh ? '“疗愈发生于深层联结之中。”' : '“Healing happens in connection.”'}
             </p>
 
-            {/* CTA Button: Exact button from screenshot */}
+            {/* CTA Button */}
             <div>
               <button
                 type="button"

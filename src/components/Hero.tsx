@@ -70,14 +70,14 @@ export const Hero: React.FC<HeroProps> = ({
         <source src={videoSourceUrl} type="video/mp4" />
       </video>
 
-      {/* Gentle Subtle Veil for Headline Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fafaf4]/10 to-[#fafaf4]/45 pointer-events-none z-2" />
+      {/* Gentle Contrast Overlay for White Headline Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55 pointer-events-none z-2" />
 
       {/* 4. Hero Content Container */}
       <div className="relative max-w-[1240px] mx-auto px-5 md:px-16 z-10">
         <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto py-12 md:py-16 px-4">
           <div className="w-full space-y-6 z-10 flex flex-col items-center text-center">
-            <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary font-normal tracking-tight max-w-xl mx-auto leading-tight md:leading-[1.2] drop-shadow-xs flex flex-wrap justify-center">
+            <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal tracking-tight max-w-xl mx-auto leading-tight md:leading-[1.2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] flex flex-wrap justify-center">
               {characters.map((char, index) => {
                 const isSpace = char === ' ';
                 return (

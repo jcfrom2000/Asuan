@@ -172,23 +172,9 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1e251d]">
       {/* 1. Hero Section */}
-      <header className="relative w-full min-h-[520px] md:min-h-[580px] lg:min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
-        {/* Statue of Liberty Photography */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={getAssetUrl('assets/images/overstream-therapy-immigration-statue-of-liberty.jpg')}
-            alt={t.imageAlts.evalStatueOfLiberty}
-            fetchPriority="high"
-            decoding="async"
-            className="w-full h-full object-cover object-center scale-105 animate-subtleZoom"
-          />
-          {/* Dual-layered gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#182017]/75 via-[#182017]/55 to-[#182017]/85" />
-          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#182017]/30 to-[#182017]/80" />
-        </div>
-
+      <header className="relative w-full min-h-[320px] sm:min-h-[360px] md:min-h-[400px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
         {/* Hero Content */}
-        <div className="relative z-10 max-w-[1000px] mx-auto px-6 sm:px-8 py-20 text-center flex flex-col items-center">
+        <div className="relative z-10 max-w-[1000px] mx-auto px-6 sm:px-8 py-16 text-center flex flex-col items-center">
           <h1 className="font-headline-lg font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#fafaf4] tracking-tight leading-[1.15] mb-5 max-w-3xl drop-shadow-sm">
             {isZh ? '移民心理评估报告' : 'Immigration Psychological Evaluation'}
           </h1>

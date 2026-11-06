@@ -479,22 +479,11 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
             {t.closingCta.quote}
           </blockquote>
           <p
-            className="reveal-on-scroll reveal-delay-100 font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] mb-8 font-medium"
+            className="reveal-on-scroll reveal-delay-100 font-label-md text-xs sm:text-sm uppercase tracking-[0.2em] font-medium"
             style={{ color: 'rgb(214, 163, 139)' }}
           >
             {t.closingCta.author}
           </p>
-
-          <div className="reveal-on-scroll reveal-delay-200 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <button
-              type="button"
-              onClick={onOpenContact}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#fafaf4] text-[#192317] hover:bg-[#eeeee9] transition-all font-label-md text-sm font-medium shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer"
-            >
-              <span>{isZh ? '与我联系' : 'Get In Touch'}</span>
-              <ArrowRight className="w-4 h-4 text-[#a35e3e]" />
-            </button>
-          </div>
         </div>
       </section>
     </article>
