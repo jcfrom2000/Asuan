@@ -20,6 +20,8 @@ import { FaqPage } from './components/FaqPage';
 import { SolutionFocusedCoachingPage } from './components/SolutionFocusedCoachingPage';
 import { ImmigrationEvaluationPage } from './components/ImmigrationEvaluationPage';
 import { CommunityWorkshopsPage } from './components/CommunityWorkshopsPage';
+import { ConsultationSupervisionPage } from './components/ConsultationSupervisionPage';
+import { SexIntimacyTherapyPage } from './components/SexIntimacyTherapyPage';
 import { updatePageSeo, PageRoute } from './utils/seo';
 import { useScrollReveal } from './utils/useScrollReveal';
 
@@ -78,6 +80,22 @@ function parseRouteFromLocation(pathname: string): {
     pathWithoutLang === '/work-with-me/immigration-evaluation'
   ) {
     page = 'immigration-evaluation';
+  } else if (
+    pathWithoutLang === '/sex-therapy' ||
+    pathWithoutLang === '/sex-intimacy-therapy' ||
+    pathWithoutLang === '/therapy/sex-therapy' ||
+    pathWithoutLang === '/therapy/sex-intimacy-therapy'
+  ) {
+    page = 'sex-therapy';
+  } else if (
+    pathWithoutLang === '/consultation-supervision' ||
+    pathWithoutLang === '/supervision' ||
+    pathWithoutLang === '/clinical-supervision' ||
+    pathWithoutLang === '/consultation' ||
+    pathWithoutLang === '/work-with-me/consultation-supervision' ||
+    pathWithoutLang === '/work-with-me/supervision'
+  ) {
+    page = 'consultation-supervision';
   } else if (pathWithoutLang === '/home' || pathWithoutLang === '/') {
     page = 'home';
   } else {
@@ -195,7 +213,25 @@ export default function App() {
       tabId === 'work-with-me/immigration-evaluation'
     )
       targetPage = 'immigration-evaluation';
-    else targetPage = 'home';
+    else if (
+      tabId === 'consultation-supervision' ||
+      tabId === 'supervision' ||
+      tabId === 'clinical-supervision' ||
+      tabId === 'consultation' ||
+      tabId === 'work-with-me/consultation-supervision' ||
+      tabId === 'work-with-me/supervision'
+    )
+      targetPage = 'consultation-supervision';
+    else if (
+      tabId === 'sex-therapy' ||
+      tabId === 'sex-intimacy-therapy' ||
+      tabId === 'therapy/sex-therapy' ||
+      tabId === 'therapy/sex-intimacy-therapy'
+    )
+      targetPage = 'sex-therapy';
+    else if (tabId === 'individual-therapy' || tabId === 'couples-family-therapy') {
+      targetPage = 'services';
+    } else targetPage = 'home';
 
     navigateTo(targetPage, language);
   };
@@ -222,7 +258,11 @@ export default function App() {
   };
 
   const handleSelectService = (service: ServiceItem) => {
-    handleOpenBooking(service.titleEn);
+    if (service.id === 'sex-intimacy-therapy' || service.id === 'sex-therapy') {
+      handleSelectTab('sex-therapy');
+    } else {
+      handleOpenBooking(service.titleEn);
+    }
   };
 
   const handleSelectConsultation = (item: ConsultationItem) => {
@@ -232,6 +272,8 @@ export default function App() {
       handleSelectTab('immigration-evaluation');
     } else if (item.id === 'groups-workshops' || item.id === 'community-workshops') {
       handleSelectTab('community');
+    } else if (item.id === 'consultation-supervision' || item.id === 'supervision') {
+      handleSelectTab('consultation-supervision');
     } else {
       handleOpenBooking(item.titleEn);
     }
@@ -375,6 +417,30 @@ export default function App() {
           <ImmigrationEvaluationPage
             language={language}
             onOpenBooking={(note) => handleOpenBooking('Immigration Evaluation', note)}
+            onOpenContact={() => handleSelectTab('contact')}
+            onNavigateHome={() => handleSelectTab('home')}
+            onNavigateToTab={(tabId) => handleSelectTab(tabId)}
+          />
+        );
+      case 'consultation-supervision':
+        return (
+          <ConsultationSupervisionPage
+            language={language}
+            onOpenBooking={(serviceName, prefillNote) =>
+              handleOpenBooking(serviceName || 'Clinical Supervision & Consultation', prefillNote)
+            }
+            onOpenContact={() => handleSelectTab('contact')}
+            onNavigateHome={() => handleSelectTab('home')}
+            onNavigateToTab={(tabId) => handleSelectTab(tabId)}
+            onOpenPrivacy={handleOpenPrivacy}
+            onOpenNoSurprise={handleOpenNoSurprise}
+          />
+        );
+      case 'sex-therapy':
+        return (
+          <SexIntimacyTherapyPage
+            language={language}
+            onOpenBooking={(note) => handleOpenBooking('Sex & Intimacy Therapy', note)}
             onOpenContact={() => handleSelectTab('contact')}
             onNavigateHome={() => handleSelectTab('home')}
             onNavigateToTab={(tabId) => handleSelectTab(tabId)}

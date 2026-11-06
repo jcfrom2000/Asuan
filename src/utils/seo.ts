@@ -8,7 +8,9 @@ export type PageRoute =
   | 'faq'
   | 'contact'
   | 'solution-focused-coaching'
-  | 'immigration-evaluation';
+  | 'immigration-evaluation'
+  | 'consultation-supervision'
+  | 'sex-therapy';
 
 export interface SeoConfig {
   page: PageRoute;
@@ -16,6 +18,24 @@ export interface SeoConfig {
 }
 
 const SEO_DATA: Record<PageRoute, Record<Language, { title: string; description: string; canonicalPath: string; keywords: string }>> = {
+  'sex-therapy': {
+    en: {
+      title: 'Sex & Intimacy Therapy | Certified Sex Therapist Chicago | OverStream Therapy',
+      description:
+        'Specialized, sex-positive therapy addressing intimacy barriers, sexual trauma recovery, religious sexual shame, and LGBTQ+ identity exploration in a stigma-free environment by Jessica Cao, CST.',
+      canonicalPath: '/sex-therapy',
+      keywords:
+        'Sex therapy Chicago, AASECT certified sex therapist, intimacy counseling, sexual trauma recovery, religious sex guilt Christian, LGBTQ affirming sex therapist, somatic intimacy therapy',
+    },
+    zh: {
+      title: '性与亲密关系治疗 (Sex & Intimacy Therapy) | AASECT 认证性治疗师 | OverStream Therapy 在溪心理',
+      description:
+        '由 AASECT 认证性治疗师（CST）曹翱璇提供性积极、创伤知情的纯谈话治疗。专注亲密障碍、性创伤疗愈、宗教性羞耻及 LGBTQ+ 身份探索。',
+      canonicalPath: '/zh/sex-therapy',
+      keywords:
+        '芝加哥性治疗师, AASECT性治疗, 华人性心理咨询, 性创伤疗愈, 宗教性羞耻, 伴侣亲密障碍, LGBTQ亲密关系, 纯谈话性治疗',
+    },
+  },
   home: {
     en: {
       title: 'OverStream Therapy | Serene Integrative Psychotherapy & Counseling in Chicago',
@@ -122,6 +142,24 @@ const SEO_DATA: Record<PageRoute, Record<Language, { title: string; description:
       canonicalPath: '/zh/community',
       keywords:
         '社区工作坊, 团体心理咨询芝加哥, 华人女性亲密关系小组, 芝加哥大学中文心理支持, 社工留学生支持小组, 创伤疗愈工作坊, 身体意象支持, 在溪心理',
+    },
+  },
+  'consultation-supervision': {
+    en: {
+      title: 'Clinical Supervision & Consultation | MSW & Clinician Mentorship | OverStream Therapy',
+      description:
+        'Clinical supervision and case consultation for MSW interns, early-career social workers, therapists, and counselors by Jessica Cao (IL LCSW/LCPC, MI LMSW). Specialty in multicultural competence and sex therapy.',
+      canonicalPath: '/consultation-supervision',
+      keywords:
+        'Clinical supervision Chicago, MSW intern supervision, therapist peer consultation, UChicago MSW supervisor, sex therapy supervision, multicultural clinician consultation',
+    },
+    zh: {
+      title: '临床个案督导与同行咨询 (Clinical Supervision & Consultation) | OverStream Therapy 在溪心理',
+      description:
+        '为社工实习生、早期咨询师与心理治疗师提供量身定制的临床个案督导、疑难个案同行研讨与继续教育支持。曹翱璇 Jessica（美中四州执业临床执照）主理。',
+      canonicalPath: '/zh/consultation-supervision',
+      keywords:
+        '临床个案督导, 芝加哥MSW实习督导, 华人心理咨询师督导, 性治疗专业督导, 同行咨询, 基督教咨询师团契, 在溪心理',
     },
   },
   faq: {

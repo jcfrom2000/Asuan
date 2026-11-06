@@ -43,4 +43,18 @@ export const communityData: ConsultationItem[] = [
     ctaTextEn: 'Learn More',
     ctaTextZh: 'Learn More',
   },
+  {
+    id: 'consultation-supervision',
+    categoryEn: 'Professional Growth',
+    categoryZh: '个案督导与同行咨询',
+    titleEn: 'Consultation & Supervision',
+    titleZh: '个案督导与同行咨询',
+    descriptionEn: 'Clinical supervision and case consultation for MSW interns, early-career social workers, and counselors cultivating multicultural awareness and sex therapy competence.',
+    descriptionZh: '为社工见习实习生、初入职场咨询师提供系统临床个案督导与按需疑难同行研讨，兼具多元文化与性治疗专长支持。',
+    imageSrc: 'assets/images/overstream-therapy-supervision-mountain-canyon-river-hero.jpg',
+    imageAltZh: '峡谷奔流清泉山川全景 - 临床个案督导与同行咨询 | OverStream Therapy 在溪心理',
+    imageAltEn: 'Tranquil Canyon River Flowing Through Mountain Gorge - Clinical Supervision & Consultation | OverStream Therapy',
+    ctaTextEn: 'Learn More',
+    ctaTextZh: 'Learn More',
+  },
 ];

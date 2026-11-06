@@ -41,4 +41,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- English Clinical Supervision & Consultation -->
+  <url>
+    <loc>https://overstreamtherapy.com/consultation-supervision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://overstreamtherapy.com/consultation-supervision" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://overstreamtherapy.com/zh/consultation-supervision" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://overstreamtherapy.com/consultation-supervision" />
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- Chinese Clinical Supervision & Consultation -->
+  <url>
+    <loc>https://overstreamtherapy.com/zh/consultation-supervision</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://overstreamtherapy.com/zh/consultation-supervision" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://overstreamtherapy.com/consultation-supervision" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://overstreamtherapy.com/consultation-supervision" />
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>

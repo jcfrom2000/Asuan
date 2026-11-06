@@ -183,6 +183,11 @@ export const translations = {
       evalStatueOfLiberty: 'Statue of Liberty in Golden Sunlight - Immigration Psychological Evaluation | OverStream Therapy',
       evalAmericanFlag: 'American Flag Light Installation with Diverse Community - Forensic Evidence Standard | OverStream Therapy',
       evalLoveThyNeighbor: 'Love Thy Neighbor Peaceful Advocacy - Immigration Ethics & Community Care | OverStream Therapy',
+      supervisionHero: 'Tranquil Canyon River Flowing Through Mountain Gorge - Clinical Supervision & Consultation | OverStream Therapy',
+      supervisionPoppyHand: 'Hand Holding Green Botanical Poppy Pods with Painted Nails - Nurturing Clinical Practice | OverStream Therapy',
+      supervisionColleagues: 'Four Diverse Colleagues Embracing on Grassy Hill at Golden Sunset - Therapist Fellowship & Peer Supervision | OverStream Therapy',
+      supervisionGothicHall: 'Historic Collegiate Gothic Stone Hall with Ivy and Lawn Chairs - University MSW Supervision | OverStream Therapy',
+      supervisionBotanicalQuote: 'Minimalist Dried Botanical Seed Pods on Linen Background - Client Reflection Sanctuary | OverStream Therapy',
     },
   },
   zh: {
@@ -368,6 +373,11 @@ export const translations = {
       evalStatueOfLiberty: '晴空下的纽约自由女神像 - 移民心理评估报告 | OverStream Therapy 在溪心理',
       evalAmericanFlag: '巨幅美国国旗装置与多元社群行进剪影 - 移民法庭与司法证据标准 | OverStream Therapy 在溪心理',
       evalLoveThyNeighbor: '和平倡导爱与包容邻舍和平集会 - 移民司法伦理与人权庇护 | OverStream Therapy 在溪心理',
+      supervisionHero: '峡谷奔流清泉山川全景 - 临床个案督导与同行咨询 | OverStream Therapy 在溪心理',
+      supervisionPoppyHand: '手持含苞待放浅绿罂粟花苞 - 临床督导滋养与新生代赋能 | OverStream Therapy 在溪心理',
+      supervisionColleagues: '金色夕阳下山峦草地相拥而立的青年同行好友 - 同行互助与心理咨询师团契 | OverStream Therapy 在溪心理',
+      supervisionGothicHall: '常春藤掩映的哥特石砌学府建筑与草坪座椅 - 芝大与密歇根大学临床实习督导 | OverStream Therapy 在溪心理',
+      supervisionBotanicalQuote: '极简柔和干花草本种荚与暖色背景 - 来访者心声语录空间 | OverStream Therapy 在溪心理',
     },
   },
 };

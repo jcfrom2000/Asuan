@@ -2,7 +2,32 @@ import { NavItem, Language } from '../types';
 
 export const navigationItems: NavItem[] = [
   { id: 'home', labelEn: 'Home', labelZh: '首页', href: '/' },
-  { id: 'services', labelEn: 'Therapy', labelZh: '心理咨询', href: '/services' },
+  {
+    id: 'services',
+    labelEn: 'Therapy',
+    labelZh: '心理咨询',
+    href: '/services',
+    children: [
+      {
+        id: 'individual-therapy',
+        labelEn: 'Individual Therapy',
+        labelZh: '个体心理咨询',
+        href: '/individual-therapy',
+      },
+      {
+        id: 'couples-family-therapy',
+        labelEn: 'Couple & Family Therapy',
+        labelZh: '伴侣与家庭咨询',
+        href: '/couples-family-therapy',
+      },
+      {
+        id: 'sex-therapy',
+        labelEn: 'Sex & Intimacy Therapy',
+        labelZh: '性与亲密关系治疗',
+        href: '/sex-therapy',
+      },
+    ],
+  },
   {
     id: 'community',
     labelEn: 'Work With Me',
@@ -78,9 +103,11 @@ export const footerCompassLinks = [
   { id: 'home', labelEn: 'Home', labelZh: '首页', href: '/' },
   { id: 'about', labelEn: 'About Jessica', labelZh: '关于咨询师', href: '/about' },
   { id: 'services', labelEn: 'Therapy Services', labelZh: '心理咨询服务', href: '/services' },
+  { id: 'sex-therapy', labelEn: 'Sex & Intimacy Therapy', labelZh: '性与亲密关系治疗', href: '/sex-therapy' },
   { id: 'solution-focused-coaching', labelEn: 'Solution-Focused Coaching', labelZh: '短期焦点辅导', href: '/solution-focused-coaching' },
   { id: 'immigration-evaluation', labelEn: 'Immigration Evaluation', labelZh: '移民心理评估', href: '/immigration-evaluation' },
-  { id: 'community', labelEn: 'Community & Workshops', labelZh: '团体赋能与评估', href: '/community' },
+  { id: 'community', labelEn: 'Community & Workshops', labelZh: '团体辅导与社区讲座', href: '/community' },
+  { id: 'consultation-supervision', labelEn: 'Consultation & Supervision', labelZh: '个案督导与同行咨询', href: '/consultation-supervision' },
   { id: 'faq', labelEn: 'Client FAQs', labelZh: '常见咨询须知', href: '/faq' },
   { id: 'contact', labelEn: 'Contact & Location', labelZh: '预约咨询与联络', href: '/contact' },
 ];

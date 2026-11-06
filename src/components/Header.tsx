@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown, Lock, ExternalLink } from 'lucide-react';
+import { Menu, X, ChevronDown, Lock, ExternalLink, ArrowRight } from 'lucide-react';
 import { Language, NavItem, NavSubItem } from '../types';
 import { navigationItems, getCleanPathForNav } from '../data/navigationData';
 import { translations } from '../data/translations';
@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
           {navigationItems.map((item) => {
             const isActive = isItemActive(item);
             const label = language === 'zh' ? item.labelZh : item.labelEn;
@@ -104,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <div
                   key={item.id}
                   data-nav-dropdown
-                  className="relative"
+                  className="relative flex items-center"
                   onMouseEnter={() => handleMouseEnter(item.id)}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -113,52 +113,64 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={(e) => handleNavClick(e, item)}
                     aria-current={isActive ? 'page' : undefined}
                     aria-expanded={isDropdownOpen}
-                    className={`relative py-1 font-label-md text-sm xl:text-label-md transition-colors flex items-center gap-1 whitespace-nowrap ${
+                    className={`group relative h-10 px-3 xl:px-3.5 inline-flex items-center gap-1.5 font-label-md text-sm xl:text-[14.5px] transition-colors whitespace-nowrap ${
                       isActive
                         ? 'text-[#a35e3e] font-medium'
                         : 'text-on-surface-variant hover:text-[#a35e3e]'
                     }`}
                   >
-                    <span>{label}</span>
+                    <span className="relative">
+                      {label}
+                      <span
+                        className={`absolute -bottom-1.5 left-0 right-0 h-[2px] rounded-full transition-all duration-200 ${
+                          isActive
+                            ? 'bg-[#a35e3e] opacity-100 scale-x-100'
+                            : 'bg-[#a35e3e] opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100'
+                        }`}
+                      />
+                    </span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        isDropdownOpen ? 'rotate-180 text-[#a35e3e]' : 'opacity-70'
+                      className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
+                        isDropdownOpen
+                          ? 'rotate-180 text-[#a35e3e]'
+                          : 'opacity-60 group-hover:text-[#a35e3e]'
                       }`}
                     />
-                    {isActive ? (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full bg-[#a35e3e] transition-all" />
-                    ) : (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full bg-transparent group-hover:w-full transition-all" />
-                    )}
                   </a>
 
-                  {/* Dropdown Menu */}
+                  {/* Refined Serene Editorial Dropdown Menu */}
                   {isDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 min-w-[270px] py-2 bg-[#2d372b] text-[#fbf7f0] rounded-2xl shadow-xl border border-white/10 backdrop-blur-xl animate-fadeIn z-50">
-                      <div className="flex flex-col">
-                        {item.children?.map((subItem) => {
-                          const isSubActive = activeTab === subItem.id;
-                          const subLabel = language === 'zh' ? subItem.labelZh : subItem.labelEn;
-                          const subHref = getCleanPathForNav(subItem.id, language);
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+                      <div className="min-w-[285px] p-2 bg-[#fafaf4]/98 backdrop-blur-2xl rounded-2xl shadow-[0_16px_40px_rgba(46,56,43,0.12),0_4px_12px_rgba(0,0,0,0.04)] border border-[#2e382b]/10 animate-fadeIn">
+                        <div className="flex flex-col space-y-0.5">
+                          {item.children?.map((subItem) => {
+                            const isSubActive = activeTab === subItem.id;
+                            const subLabel = language === 'zh' ? subItem.labelZh : subItem.labelEn;
+                            const subHref = getCleanPathForNav(subItem.id, language);
 
-                          return (
-                            <a
-                              key={subItem.id}
-                              href={subHref}
-                              onClick={(e) => handleSubItemClick(e, subItem)}
-                              className={`px-4 py-2.5 text-sm font-label-md transition-colors flex items-center justify-between ${
-                                isSubActive
-                                  ? 'bg-[#3b4739] text-[#e8b598] font-medium'
-                                  : 'text-[#e5e8e2] hover:bg-[#3b4739]/80 hover:text-white'
-                              }`}
-                            >
-                              <span>{subLabel}</span>
-                              {isSubActive && (
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#e8b598]" />
-                              )}
-                            </a>
-                          );
-                        })}
+                            return (
+                              <a
+                                key={subItem.id}
+                                href={subHref}
+                                onClick={(e) => handleSubItemClick(e, subItem)}
+                                className={`group/sub px-3.5 py-2.5 rounded-xl text-xs sm:text-[13.5px] font-label-md transition-all duration-200 flex items-center justify-between ${
+                                  isSubActive
+                                    ? 'bg-[#eeeee9] text-[#a35e3e] font-medium shadow-2xs'
+                                    : 'text-on-surface-variant hover:text-[#1a1c19] hover:bg-[#eeeee9]/70'
+                                }`}
+                              >
+                                <span className="transition-transform duration-200 group-hover/sub:translate-x-0.5">
+                                  {subLabel}
+                                </span>
+                                {isSubActive ? (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#a35e3e] shrink-0 ml-2" />
+                                ) : (
+                                  <ArrowRight className="w-3.5 h-3.5 text-[#a35e3e] opacity-0 -translate-x-1 group-hover/sub:opacity-100 group-hover/sub:translate-x-0 transition-all shrink-0 ml-2" />
+                                )}
+                              </a>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -172,18 +184,22 @@ export const Header: React.FC<HeaderProps> = ({
                 href={cleanHref}
                 onClick={(e) => handleNavClick(e, item)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`relative py-1 font-label-md text-sm xl:text-label-md transition-colors flex flex-col items-center whitespace-nowrap ${
+                className={`group relative h-10 px-3 xl:px-3.5 inline-flex items-center font-label-md text-sm xl:text-[14.5px] transition-colors whitespace-nowrap ${
                   isActive
                     ? 'text-[#a35e3e] font-medium'
                     : 'text-on-surface-variant hover:text-[#a35e3e]'
                 }`}
               >
-                <span>{label}</span>
-                {isActive ? (
-                  <span className="w-full h-[2px] rounded-full mt-1 bg-[#a35e3e] transition-all" />
-                ) : (
-                  <span className="w-0 h-[2px] rounded-full mt-1 bg-transparent group-hover:w-full transition-all" />
-                )}
+                <span className="relative">
+                  {label}
+                  <span
+                    className={`absolute -bottom-1.5 left-0 right-0 h-[2px] rounded-full transition-all duration-200 ${
+                      isActive
+                        ? 'bg-[#a35e3e] opacity-100 scale-x-100'
+                        : 'bg-[#a35e3e] opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100'
+                    }`}
+                  />
+                </span>
               </a>
             );
           })}
