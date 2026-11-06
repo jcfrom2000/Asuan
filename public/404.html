@@ -11,15 +11,15 @@
         'community', 'community-services', 'community-workshops', 'workshops', 'groups',
         'solution-focused-coaching', 'coaching', 'immigration-evaluation',
         'sex-therapy', 'sex-intimacy-therapy', 'individual-therapy', 'individual-counseling',
-        'couple-family-therapy', 'couple-and-family-therapy', 'consultation-supervision', 'supervision', 'home'
+        'couple-family-therapy', 'couple-and-family-therapy', 'consultation-supervision', 'supervision', 'home', '404'
       ];
 
       var l = window.location;
       var pathSegments = l.pathname.split('/').filter(Boolean);
 
-      // Determine pathSegmentsToKeep dynamically (1 if under subpath repository like /Asuan/, 0 if root domain)
+      // Determine pathSegmentsToKeep dynamically (1 if under subpath repository like /Asuan/path, 0 if root domain or single path segment)
       var pathSegmentsToKeep = 0;
-      if (pathSegments.length > 0 && !knownFirstSegments.includes(pathSegments[0])) {
+      if (pathSegments.length > 1 && !knownFirstSegments.includes(pathSegments[0])) {
         pathSegmentsToKeep = 1;
       }
 

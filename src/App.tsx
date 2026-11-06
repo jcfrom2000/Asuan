@@ -48,10 +48,10 @@ function parseRouteFromLocation(pathname: string): {
     'community', 'community-services', 'community-workshops', 'workshops', 'groups',
     'solution-focused-coaching', 'coaching', 'immigration-evaluation',
     'sex-therapy', 'sex-intimacy-therapy', 'individual-therapy', 'individual-counseling',
-    'couple-family-therapy', 'couple-and-family-therapy', 'consultation-supervision', 'supervision', 'home'
+    'couple-family-therapy', 'couple-and-family-therapy', 'consultation-supervision', 'supervision', 'home', '404'
   ];
 
-  if (segments.length > 0 && !knownFirstSegments.includes(segments[0])) {
+  if (segments.length > 1 && !knownFirstSegments.includes(segments[0])) {
     cleanPath = '/' + segments.slice(1).join('/');
   }
 
@@ -476,12 +476,14 @@ export default function App() {
       case 'sex-therapy':
         return (
           <SexIntimacyTherapyPage
+            language={language}
             onOpenBooking={(note) => handleOpenBooking('Sex & Intimacy Therapy', note)}
           />
         );
       case 'couple-family-therapy':
         return (
           <CoupleFamilyTherapyPage
+            language={language}
             onOpenBooking={(note) => handleOpenBooking('Couple & Family Therapy', note)}
             onOpenContact={() => handleSelectTab('contact')}
             onNavigateHome={() => handleSelectTab('home')}
@@ -491,6 +493,7 @@ export default function App() {
       case 'individual-therapy':
         return (
           <IndividualTherapyPage
+            language={language}
             onOpenBooking={(note) => handleOpenBooking('Individual Therapy', note)}
             onOpenContact={() => handleSelectTab('contact')}
             onNavigateHome={() => handleSelectTab('home')}
