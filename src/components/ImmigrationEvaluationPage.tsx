@@ -443,7 +443,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
                     <span>
                       {isZh
                         ? '专精于创伤知情与性治疗：'
-                        : 'Specialized in Trauma & Sex Therapy:'}
+                        : 'Specialized in Trauma & Sex & Intimacy Therapy:'}
                     </span>
                   </h3>
                   <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed pl-7">

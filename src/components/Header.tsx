@@ -21,9 +21,19 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
-  const [mobileExpandedId, setMobileExpandedId] = useState<string | null>('community');
+  const [mobileExpandedId, setMobileExpandedId] = useState<string | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const t = translations[language];
+
+  // Auto-expand mobile submenu for active tab
+  useEffect(() => {
+    const activeParent = navigationItems.find((item) =>
+      item.children?.some((child) => child.id === activeTab)
+    );
+    if (activeParent) {
+      setMobileExpandedId(activeParent.id);
+    }
+  }, [activeTab]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -108,12 +118,11 @@ export const Header: React.FC<HeaderProps> = ({
                   onMouseEnter={() => handleMouseEnter(item.id)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <a
-                    href={cleanHref}
-                    onClick={(e) => handleNavClick(e, item)}
-                    aria-current={isActive ? 'page' : undefined}
+                  <button
+                    type="button"
+                    onClick={() => setOpenDropdownId(isDropdownOpen ? null : item.id)}
                     aria-expanded={isDropdownOpen}
-                    className={`group relative h-10 px-3 xl:px-3.5 inline-flex items-center gap-1.5 font-label-md text-sm xl:text-[14.5px] transition-colors whitespace-nowrap ${
+                    className={`group relative h-10 px-3 xl:px-3.5 inline-flex items-center gap-1.5 font-label-md text-sm xl:text-[14.5px] transition-colors whitespace-nowrap cursor-pointer ${
                       isActive
                         ? 'text-[#a35e3e] font-medium'
                         : 'text-on-surface-variant hover:text-[#a35e3e]'
@@ -136,7 +145,7 @@ export const Header: React.FC<HeaderProps> = ({
                           : 'opacity-60 group-hover:text-[#a35e3e]'
                       }`}
                     />
-                  </a>
+                  </button>
 
                   {/* Refined Serene Editorial Dropdown Menu */}
                   {isDropdownOpen && (
@@ -282,31 +291,20 @@ export const Header: React.FC<HeaderProps> = ({
               if (hasChildren) {
                 return (
                   <div key={item.id} className="flex flex-col">
-                    <div
-                      className={`flex items-center justify-between py-2 px-3.5 rounded-xl font-label-md text-base transition-colors ${
+                    <button
+                      type="button"
+                      onClick={() => setMobileExpandedId(isExpanded ? null : item.id)}
+                      className={`w-full flex items-center justify-between py-2.5 px-3.5 rounded-xl font-label-md text-base transition-colors text-left cursor-pointer ${
                         isActive
                           ? 'bg-[#f7f1eb] text-[#a35e3e] font-semibold'
                           : 'text-on-surface hover:bg-[#eeeee9]/70'
                       }`}
                     >
-                      <a
-                        href={cleanHref}
-                        onClick={(e) => handleNavClick(e, item)}
-                        className="grow"
-                      >
-                        {label}
-                      </a>
-                      <button
-                        type="button"
-                        onClick={() => setMobileExpandedId(isExpanded ? null : item.id)}
-                        className="p-1 text-on-surface-variant hover:text-primary"
-                        aria-label="Toggle submenu"
-                      >
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                        />
-                      </button>
-                    </div>
+                      <span>{label}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180 text-[#a35e3e]' : ''}`}
+                      />
+                    </button>
 
                     {/* Submenu Accordion */}
                     {isExpanded && (

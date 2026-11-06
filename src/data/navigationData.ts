@@ -6,7 +6,6 @@ export const navigationItems: NavItem[] = [
     id: 'services',
     labelEn: 'Therapy',
     labelZh: '心理咨询',
-    href: '/services',
     children: [
       {
         id: 'individual-therapy',
@@ -15,10 +14,10 @@ export const navigationItems: NavItem[] = [
         href: '/individual-therapy',
       },
       {
-        id: 'couples-family-therapy',
+        id: 'couple-family-therapy',
         labelEn: 'Couple & Family Therapy',
         labelZh: '伴侣与家庭咨询',
-        href: '/couples-family-therapy',
+        href: '/couple-family-therapy',
       },
       {
         id: 'sex-therapy',
@@ -32,7 +31,6 @@ export const navigationItems: NavItem[] = [
     id: 'community',
     labelEn: 'Work With Me',
     labelZh: '合作服务',
-    href: '/community',
     children: [
       {
         id: 'solution-focused-coaching',
@@ -102,7 +100,8 @@ export const practiceTags = [
 export const footerCompassLinks = [
   { id: 'home', labelEn: 'Home', labelZh: '首页', href: '/' },
   { id: 'about', labelEn: 'About Jessica', labelZh: '关于咨询师', href: '/about' },
-  { id: 'services', labelEn: 'Therapy Services', labelZh: '心理咨询服务', href: '/services' },
+  { id: 'individual-therapy', labelEn: 'Individual Therapy', labelZh: '个体心理咨询', href: '/individual-therapy' },
+  { id: 'couple-family-therapy', labelEn: 'Couple & Family Therapy', labelZh: '伴侣与家庭咨询', href: '/couple-family-therapy' },
   { id: 'sex-therapy', labelEn: 'Sex & Intimacy Therapy', labelZh: '性与亲密关系治疗', href: '/sex-therapy' },
   { id: 'solution-focused-coaching', labelEn: 'Solution-Focused Coaching', labelZh: '短期焦点辅导', href: '/solution-focused-coaching' },
   { id: 'immigration-evaluation', labelEn: 'Immigration Evaluation', labelZh: '移民心理评估', href: '/immigration-evaluation' },

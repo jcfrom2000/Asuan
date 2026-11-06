@@ -2,7 +2,7 @@ import { ServiceItem } from '../types';
 
 export const servicesData: ServiceItem[] = [
   {
-    id: 'individual-therapy',
+    id: 'individual-therapy-page',
     categoryEn: 'Individual Care',
     categoryZh: '个体心理咨询',
     titleEn: 'Individual Therapy',
@@ -16,7 +16,7 @@ export const servicesData: ServiceItem[] = [
     ctaTextZh: '了解更多',
   },
   {
-    id: 'couples-family-therapy',
+    id: 'couple-family-therapy',
     categoryEn: 'Relational Care',
     categoryZh: '伴侣与家庭咨询',
     titleEn: 'Couple & Family Therapy',

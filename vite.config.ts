@@ -4,9 +4,9 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
-  // In development and AI Studio builds, base defaults to '/'.
-  // If BASE_URL is provided (e.g. CI/CD subpath deployment), it will use that.
-  const base = process.env.BASE_URL || '/';
+  // In development and AI Studio, base defaults to '/'.
+  // For production builds (e.g. GitHub Pages subpaths), default to relative './' unless BASE_URL is set.
+  const base = process.env.BASE_URL || (command === 'build' ? './' : '/');
 
   return {
     base,

@@ -22,6 +22,8 @@ import { ImmigrationEvaluationPage } from './components/ImmigrationEvaluationPag
 import { CommunityWorkshopsPage } from './components/CommunityWorkshopsPage';
 import { ConsultationSupervisionPage } from './components/ConsultationSupervisionPage';
 import { SexIntimacyTherapyPage } from './components/SexIntimacyTherapyPage';
+import { CoupleFamilyTherapyPage } from './components/CoupleFamilyTherapyPage';
+import { IndividualTherapyPage } from './components/IndividualTherapyPage';
 import { updatePageSeo, PageRoute } from './utils/seo';
 import { useScrollReveal } from './utils/useScrollReveal';
 
@@ -32,12 +34,24 @@ function parseRouteFromLocation(pathname: string): {
 } {
   let cleanPath = pathname.toLowerCase().replace(/\/+$/, '') || '/';
 
-  // Automatically strip GitHub Pages subpath (e.g. /asuan or /asuan/)
+  // Automatically strip BASE_URL if present
   const rawBase = (import.meta.env.BASE_URL || '/').toLowerCase().replace(/\/+$/, '');
-  if (rawBase && rawBase !== '/' && cleanPath.startsWith(rawBase)) {
+  if (rawBase && rawBase !== '/' && rawBase !== '.' && rawBase !== './' && cleanPath.startsWith(rawBase)) {
     cleanPath = cleanPath.slice(rawBase.length) || '/';
-  } else if (cleanPath.startsWith('/asuan')) {
-    cleanPath = cleanPath.replace(/^\/asuan/, '') || '/';
+  }
+
+  // Dynamically strip unknown GitHub Pages repository name (e.g. /my-repo-name/individual-therapy -> /individual-therapy)
+  const segments = cleanPath.split('/').filter(Boolean);
+  const knownFirstSegments = [
+    'zh', 'contact', 'about', 'about-jessica', 'faq', 'faqs',
+    'community', 'community-services', 'community-workshops', 'workshops', 'groups',
+    'solution-focused-coaching', 'coaching', 'immigration-evaluation',
+    'sex-therapy', 'sex-intimacy-therapy', 'individual-therapy', 'individual-counseling',
+    'couple-family-therapy', 'couple-and-family-therapy', 'consultation-supervision', 'supervision', 'home'
+  ];
+
+  if (segments.length > 0 && !knownFirstSegments.includes(segments[0])) {
+    cleanPath = '/' + segments.slice(1).join('/');
   }
 
   let language: Language = 'en';
@@ -55,8 +69,6 @@ function parseRouteFromLocation(pathname: string): {
     page = 'about';
   } else if (pathWithoutLang === '/faq' || pathWithoutLang === '/faqs') {
     page = 'faq';
-  } else if (pathWithoutLang === '/services' || pathWithoutLang === '/therapy-services') {
-    page = 'services';
   } else if (
     pathWithoutLang === '/community' ||
     pathWithoutLang === '/community-services' ||
@@ -88,6 +100,19 @@ function parseRouteFromLocation(pathname: string): {
   ) {
     page = 'sex-therapy';
   } else if (
+    pathWithoutLang === '/individual-therapy' ||
+    pathWithoutLang === '/individual-counseling' ||
+    pathWithoutLang === '/therapy/individual-therapy'
+  ) {
+    page = 'individual-therapy';
+  } else if (
+    pathWithoutLang === '/couple-family-therapy' ||
+    pathWithoutLang === '/couple-and-family-therapy' ||
+    pathWithoutLang === '/therapy/couple-family-therapy' ||
+    pathWithoutLang === '/therapy/couple-and-family-therapy'
+  ) {
+    page = 'couple-family-therapy';
+  } else if (
     pathWithoutLang === '/consultation-supervision' ||
     pathWithoutLang === '/supervision' ||
     pathWithoutLang === '/clinical-supervision' ||
@@ -96,11 +121,8 @@ function parseRouteFromLocation(pathname: string): {
     pathWithoutLang === '/work-with-me/supervision'
   ) {
     page = 'consultation-supervision';
-  } else if (pathWithoutLang === '/home' || pathWithoutLang === '/') {
-    page = 'home';
   } else {
-    const saved = typeof window !== 'undefined' ? (sessionStorage.getItem('active_tab') as PageRoute) : null;
-    page = saved || 'about';
+    page = 'home';
   }
 
   return { page, language };
@@ -191,7 +213,7 @@ export default function App() {
     if (tabId === 'contact' || tabId === 'contact-and-location') targetPage = 'contact';
     else if (tabId === 'about' || tabId === 'about-jessica') targetPage = 'about';
     else if (tabId === 'faq' || tabId === 'faqs') targetPage = 'faq';
-    else if (tabId === 'services' || tabId === 'therapy-services') targetPage = 'services';
+    else if (tabId === 'faq' || tabId === 'faqs') targetPage = 'faq';
     else if (
       tabId === 'community' ||
       tabId === 'community-services' ||
@@ -229,8 +251,15 @@ export default function App() {
       tabId === 'therapy/sex-intimacy-therapy'
     )
       targetPage = 'sex-therapy';
-    else if (tabId === 'individual-therapy' || tabId === 'couples-family-therapy') {
-      targetPage = 'services';
+    else if (
+      tabId === 'couple-family-therapy' ||
+      tabId === 'couple-and-family-therapy' ||
+      tabId === 'therapy/couple-family-therapy' ||
+      tabId === 'therapy/couple-and-family-therapy'
+    )
+      targetPage = 'couple-family-therapy';
+    else if (tabId === 'individual-therapy') {
+      targetPage = 'individual-therapy';
     } else targetPage = 'home';
 
     navigateTo(targetPage, language);
@@ -260,6 +289,10 @@ export default function App() {
   const handleSelectService = (service: ServiceItem) => {
     if (service.id === 'sex-intimacy-therapy' || service.id === 'sex-therapy') {
       handleSelectTab('sex-therapy');
+    } else if (service.id === 'couple-family-therapy') {
+      handleSelectTab('couple-family-therapy');
+    } else if (service.id === 'individual-therapy-page') {
+      handleSelectTab('individual-therapy');
     } else {
       handleOpenBooking(service.titleEn);
     }
@@ -376,20 +409,6 @@ export default function App() {
             onNavigateHome={() => handleSelectTab('home')}
           />
         );
-      case 'services':
-        return (
-          <div className="flex flex-col w-full">
-            <CoreOfferings
-              language={language}
-              onSelectService={handleSelectService}
-            />
-            <ClosingCta
-              language={language}
-              onOpenBooking={() => handleOpenBooking()}
-              onOpenContact={() => handleSelectTab('contact')}
-            />
-          </div>
-        );
       case 'community':
         return (
           <CommunityWorkshopsPage
@@ -439,11 +458,25 @@ export default function App() {
       case 'sex-therapy':
         return (
           <SexIntimacyTherapyPage
-            language={language}
             onOpenBooking={(note) => handleOpenBooking('Sex & Intimacy Therapy', note)}
+          />
+        );
+      case 'couple-family-therapy':
+        return (
+          <CoupleFamilyTherapyPage
+            onOpenBooking={(note) => handleOpenBooking('Couple & Family Therapy', note)}
             onOpenContact={() => handleSelectTab('contact')}
             onNavigateHome={() => handleSelectTab('home')}
-            onNavigateToTab={(tabId) => handleSelectTab(tabId)}
+            onNavigateToTab={(tabId: string) => handleSelectTab(tabId)}
+          />
+        );
+      case 'individual-therapy':
+        return (
+          <IndividualTherapyPage
+            onOpenBooking={(note) => handleOpenBooking('Individual Therapy', note)}
+            onOpenContact={() => handleSelectTab('contact')}
+            onNavigateHome={() => handleSelectTab('home')}
+            onNavigateToTab={(tabId: string) => handleSelectTab(tabId)}
           />
         );
       case 'home':

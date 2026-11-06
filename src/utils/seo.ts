@@ -10,7 +10,9 @@ export type PageRoute =
   | 'solution-focused-coaching'
   | 'immigration-evaluation'
   | 'consultation-supervision'
-  | 'sex-therapy';
+  | 'sex-therapy'
+  | 'couple-family-therapy'
+  | 'individual-therapy';
 
 export interface SeoConfig {
   page: PageRoute;
@@ -18,6 +20,42 @@ export interface SeoConfig {
 }
 
 const SEO_DATA: Record<PageRoute, Record<Language, { title: string; description: string; canonicalPath: string; keywords: string }>> = {
+  'individual-therapy': {
+    en: {
+      title: 'Individual Therapy | Trauma-Informed Counseling | OverStream Therapy',
+      description:
+        'Culturally affirming, trauma-informed individual therapy for anxiety, depression, past trauma, and identity struggles by Jessica Cao, LCSW, LCPC.',
+      canonicalPath: '/individual-therapy',
+      keywords:
+        'Individual therapy Chicago, trauma-informed therapy, anxiety depression counseling, immigrant mental health, culturally affirming therapy, Jessica Cao LCSW',
+    },
+    zh: {
+      title: '个体心理咨询 | 创伤知情与文化回应 | OverStream Therapy 在溪心理',
+      description:
+        '专注焦虑、抑郁、创伤、关系模式、身份探索与跨文化压力的个体心理咨询。提供具有文化回应性、安全且非评判的治疗空间。',
+      canonicalPath: '/zh/individual-therapy',
+      keywords:
+        '个体心理咨询, 芝加哥心理医生, 创伤疗愈, 焦虑抑郁治疗, 跨文化心理咨询, 留学生心理健康, 曹翱璇',
+    },
+  },
+  'couple-family-therapy': {
+    en: {
+      title: 'Couple & Family Therapy | Relationship Reconnection | OverStream Therapy',
+      description:
+        'Specialized, attachment-based, and emotionally focused therapy for partners and families navigating transitions, communication barriers, relationship conflict, and relational trauma.',
+      canonicalPath: '/couple-family-therapy',
+      keywords:
+        'Couples therapy Chicago, family therapy Chicago, relationship reconnection, attachment-based therapy, Emotionally Focused Therapy EFT, communication breakdown, family transitions, relational trauma',
+    },
+    zh: {
+      title: '伴侣与家庭治疗 (Couple & Family Therapy) | 联结修复与关系构建 | OverStream Therapy 在溪心理',
+      description:
+        '专注亲密关系修复、家庭沟通障碍、生活转折点与家庭动力重建。运用依恋理论与情感聚焦疗法，为伴侣与家庭提供安全的联结空间。',
+      canonicalPath: '/zh/couple-family-therapy',
+      keywords:
+        '伴侣治疗, 家庭治疗, 婚姻咨询, 修复亲密关系, 家庭沟通障碍, 生活转折点, 依恋关系, 情感聚焦疗法 EFT, 华人伴侣咨询',
+    },
+  },
   'sex-therapy': {
     en: {
       title: 'Sex & Intimacy Therapy | Certified Sex Therapist Chicago | OverStream Therapy',

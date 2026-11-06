@@ -19,7 +19,12 @@ export function getAssetUrl(path: string): string {
   }
 
   const rawBase = import.meta.env.BASE_URL || '/';
-  const cleanBase = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+  let cleanBase = rawBase;
+  if (cleanBase === './' || cleanBase === '.') {
+    cleanBase = '';
+  } else if (!cleanBase.endsWith('/')) {
+    cleanBase = `${cleanBase}/`;
+  }
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
   return `${cleanBase}${cleanPath}`;

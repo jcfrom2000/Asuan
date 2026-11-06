@@ -47,7 +47,7 @@ export const faqData: FaqItem[] = [
   },
   {
     id: 'sex-therapy-nudity-touch',
-    categoryEn: 'Sex Therapy Ethics',
+    categoryEn: 'Sex & Intimacy Therapy Ethics',
     categoryZh: '性治疗伦理须知',
     questionEn: 'Do I have to take off my clothes or be touched during Sex Therapy?',
     questionZh: '在性治疗过程中，我需要脱衣服或被触碰吗？',

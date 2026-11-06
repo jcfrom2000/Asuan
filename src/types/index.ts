@@ -11,7 +11,7 @@ export interface NavItem {
   id: string;
   labelEn: string;
   labelZh: string;
-  href: string;
+  href?: string;
   children?: NavSubItem[];
 }
 
