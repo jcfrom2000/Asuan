@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, ChevronDown, HelpCircle, Layers, ChevronsUpDown, Check } from 'lucide-react';
+import { ChevronDown, HelpCircle, ChevronsUpDown } from 'lucide-react';
 import { Language } from '../types';
 import { faqData } from '../data/faqData';
 import { FaqAnswerView } from './FaqAnswerView';
+import { getAssetUrl } from '../utils/assets';
 
 interface FaqPageProps {
   language: Language;
@@ -13,7 +14,6 @@ interface FaqPageProps {
 export const FaqPage: React.FC<FaqPageProps> = ({
   language,
   onOpenBooking,
-  onNavigateHome,
 }) => {
   // Default all collapsed as requested
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
@@ -77,66 +77,67 @@ export const FaqPage: React.FC<FaqPageProps> = ({
   };
 
   return (
-    <div className="w-full bg-surface">
-      {/* 1. Header / Intro */}
-      <section className="bg-surface-container-low pt-12 pb-14 border-b border-[#2e382b]/5">
-        <div className="max-w-[880px] mx-auto px-5 md:px-16 space-y-6">
-          <button
-            type="button"
-            onClick={onNavigateHome}
-            className="inline-flex items-center gap-2 text-sm font-label-md text-secondary hover:text-primary transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>{isZh ? '返回首页' : 'Back to Home'}</span>
-          </button>
+    <div className="w-full bg-[#fafaf4]">
+      {/* 1. Hero Header Section */}
+      <header className="relative w-full min-h-[420px] sm:min-h-[460px] md:min-h-[500px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={getAssetUrl('assets/images/overstream-therapy-supervision-dried-botanical-seed-pods-quote-bg.jpg')}
+            alt="Client Inquiries & Clinical Transparency - Dried Botanical Study"
+            fetchPriority="high"
+            decoding="async"
+            className="w-full h-full object-cover object-center scale-105 animate-subtleZoom opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#182017]/80 via-[#182017]/60 to-[#182017]/85" />
+          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#182017]/30 to-[#182017]/80" />
+        </div>
 
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4ebe1] text-[#a35e3e] text-xs font-semibold tracking-wider uppercase font-label-md">
-              <span>{isZh ? '答疑解惑 • 咨询须知' : 'Client Inquiries & Clinical Transparency'}</span>
-            </div>
-            <h1 className="font-headline-lg text-3xl sm:text-4xl text-primary font-normal leading-tight">
-              {isZh ? '常见问题与解答 (FAQs)' : 'Frequently Asked Questions'}
-            </h1>
-            <p className="font-body-md text-base text-on-surface-variant max-w-2xl leading-relaxed">
-              {isZh
-                ? '清晰透明地解答执照执业范围、保险与自费政策、性治疗伦理规范（纯谈话无触碰）及移民心理评估要点。'
-                : 'Clear, compassionate answers regarding session fees, licensure (IL & MI), insurance & superbills, ethics of sex therapy, and immigration evaluations.'}
-            </p>
-          </div>
+        <div className="relative z-10 max-w-[900px] mx-auto px-6 sm:px-8 py-16 sm:py-20 text-center flex flex-col items-center">
+          <h1 className="font-headline-lg font-normal text-3xl sm:text-4xl md:text-5xl text-[#fafaf4] tracking-tight leading-[1.15] mb-4 drop-shadow-sm max-w-3xl">
+            {isZh ? '常见问题与解答 (FAQs)' : 'Frequently Asked Questions'}
+          </h1>
 
-          {/* Category Chips Bar */}
-          <div className="pt-2 flex flex-wrap items-center gap-2">
-            {categories.map((cat) => {
-              const isActive = selectedCategory === cat.key;
-              const label = isZh ? cat.labelZh : cat.labelEn;
-              return (
-                <button
-                  key={cat.key}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat.key)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-label-md transition-all cursor-pointer flex items-center gap-1.5 ${
-                    isActive
-                      ? 'bg-primary text-white shadow-2xs font-medium'
-                      : 'bg-white border border-[#2e382b]/10 text-secondary hover:text-primary hover:bg-[#fafaf4]'
+          <p className="font-body-md text-base sm:text-lg text-[#e8eae4] font-normal max-w-2xl leading-relaxed drop-shadow-sm">
+            {isZh
+              ? '清晰透明地解答执照执业范围、保险与自费政策、性治疗伦理规范（纯谈话无触碰）及移民心理评估要点。'
+              : 'Clear, compassionate answers regarding session fees, licensure (IL & MI), insurance & superbills, ethics of sex therapy, and immigration evaluations.'}
+          </p>
+        </div>
+      </header>
+
+      {/* Category Chips Bar */}
+      <section className="bg-[#f4ebe1]/40 py-5 border-b border-[#2e382b]/8">
+        <div className="max-w-[880px] mx-auto px-5 md:px-16 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat.key;
+            const label = isZh ? cat.labelZh : cat.labelEn;
+            return (
+              <button
+                key={cat.key}
+                type="button"
+                onClick={() => setSelectedCategory(cat.key)}
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-label-md transition-all cursor-pointer flex items-center gap-2 ${
+                  isActive
+                    ? 'bg-primary text-white shadow-2xs font-medium'
+                    : 'bg-white border border-[#2e382b]/12 text-secondary hover:text-primary hover:bg-white/80'
+                }`}
+              >
+                <span>{label}</span>
+                <span
+                  className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-[#2e382b]/6 text-secondary'
                   }`}
                 >
-                  <span>{label}</span>
-                  <span
-                    className={`text-[11px] px-1.5 py-0.2 rounded-full font-mono ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-[#2e382b]/5 text-secondary'
-                    }`}
-                  >
-                    {cat.count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  {cat.count}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </section>
 
       {/* 2. Controls & FAQ Accordion List */}
-      <section className="py-12 md:py-20 bg-surface border-b border-[#2e382b]/5">
+      <section className="py-12 md:py-20 bg-[#fafaf4] border-b border-[#2e382b]/5">
         <div className="max-w-[880px] mx-auto px-5 md:px-16 space-y-6">
           {/* Top Actions: Total Count & Expand/Collapse All */}
           <div className="flex items-center justify-between text-xs sm:text-sm text-secondary font-label-md px-1">
@@ -176,8 +177,8 @@ export const FaqPage: React.FC<FaqPageProps> = ({
                   key={faq.id}
                   className={`rounded-2xl transition-all duration-200 border ${
                     isOpen
-                      ? 'bg-[#fafaf4] border-[#2e382b]/15 shadow-xs'
-                      : 'bg-white border-[#2e382b]/8 hover:border-[#2e382b]/15 shadow-2xs'
+                      ? 'bg-white border-[#2e382b]/18 shadow-sm'
+                      : 'bg-white/80 border-[#2e382b]/8 hover:border-[#2e382b]/15 shadow-2xs'
                   }`}
                 >
                   <button

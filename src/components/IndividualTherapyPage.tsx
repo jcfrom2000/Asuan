@@ -19,8 +19,8 @@ export const IndividualTherapyPage: React.FC<IndividualTherapyPageProps> = ({
       <header className="relative w-full min-h-[520px] md:min-h-[580px] lg:min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
         <div className="absolute inset-0 z-0">
           <img
-            src={getAssetUrl('assets/images/overstream-therapy-individual-counseling-botanical-study.jpg')}
-            alt="Individual therapy botanical study"
+            src={getAssetUrl('assets/aistudio/image_1726e4e2.png')}
+            alt="Individual Therapy - White Poppies Bloom"
             fetchPriority="high"
             decoding="async"
             className="w-full h-full object-cover object-center scale-105 animate-subtleZoom"

@@ -30,13 +30,51 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* 1. HERO SECTION: Editorial Bio & Portrait */}
       <section className="w-full max-w-[1240px] mx-auto px-margin md:px-margin-desktop py-space-xl lg:py-space-2xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-gutter-desktop items-center">
-          {/* Left Editorial Column */}
-          <div className="reveal-on-scroll lg:col-span-6 flex flex-col space-y-space-md">
+          {/* Portrait Image Column (First on mobile order-1, Right on desktop order-2) */}
+          <div className="reveal-on-scroll reveal-delay-100 lg:col-span-6 relative flex justify-center lg:justify-end order-1 lg:order-2 mb-6 lg:mb-0">
+            <div className="relative w-full max-w-[460px]">
+              {/* Asymmetric Tactile Double-Layer Backdrop (立体双层卡片衬底) */}
+              <div
+                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-full h-full rounded-2xl -z-10 shadow-sm border border-[#d8c8ba] transition-transform duration-500"
+                style={{ backgroundColor: '#ebded2' }}
+              />
+
+              {/* Foreground Image Vessel - Aspect-constrained for CLS = 0 */}
+              <div className="relative overflow-hidden rounded-2xl bg-surface-container shadow-md border border-[#e5ded4] aspect-[4/5] sm:aspect-auto sm:h-[520px]">
+                <img
+                  className="w-full h-full object-cover object-[50%_15%]"
+                  alt={t.imageAlts.therapistPortrait}
+                  src={getAssetUrl('assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg')}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </div>
+
+              {/* Bottom Editorial Floating Caption */}
+              <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-xl shadow-md border border-outline-variant/30 max-w-[280px]">
+                <p className="font-label-md text-label-md font-semibold text-primary">
+                  {isZh ? '曹翱璇 Jessica Cao' : 'Jessica Cao'}
+                </p>
+                <p className="font-body-sm text-body-sm text-secondary">
+                  {isZh ? '创办人 • 整合取向心理治疗师' : 'Founder & Integrative Psychotherapist'}
+                </p>
+                <p className="font-body-sm text-[11px] text-on-surface-variant mt-1 leading-tight">
+                  {isZh
+                    ? '提供芝加哥线下个案咨询与全州受保护远程视频服务。'
+                    : 'Offering in-person sessions in Chicago & secure telehealth statewide.'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Left Editorial Text Column (Second on mobile order-2, Left on desktop order-1) */}
+          <div className="reveal-on-scroll lg:col-span-6 flex flex-col space-y-space-md order-2 lg:order-1 pt-4 lg:pt-0">
             <div className="space-y-space-xs">
               <h1 className="font-display-hero text-display-hero text-primary tracking-tight leading-[1.15]">
                 {isZh ? 'Jessica Cao 曹翱璇' : 'Jessica Cao'}
               </h1>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
                 <span className="font-headline-md text-headline-md italic text-secondary font-serif">
                   (she / her / 她)
                 </span>
@@ -98,43 +136,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               >
                 {isZh ? '预约 15 分钟初访' : 'Schedule a Consultation'}
               </button>
-            </div>
-          </div>
-
-          {/* Right Column: Asymmetric Layered Framing */}
-          <div className="reveal-on-scroll reveal-delay-200 lg:col-span-6 relative flex justify-center lg:justify-end mt-8 lg:mt-0">
-            <div className="relative w-full max-w-[460px]">
-              {/* Asymmetric Tactile Double-Layer Backdrop (立体双层卡片衬底) */}
-              <div
-                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-full h-full rounded-2xl -z-10 shadow-sm border border-[#d8c8ba] transition-transform duration-500"
-                style={{ backgroundColor: '#ebded2' }}
-              />
-
-              {/* Foreground Image Vessel - Aspect-constrained for CLS = 0 */}
-              <div className="relative overflow-hidden rounded-2xl bg-surface-container shadow-md border border-[#e5ded4] aspect-[4/5] sm:aspect-auto sm:h-[520px]">
-                <img
-                  className="w-full h-full object-cover object-[50%_15%]"
-                  alt={t.imageAlts.therapistPortrait}
-                  src={getAssetUrl('assets/images/overstream-therapy-chicago-jessica-cao-licensed-therapist-portrait.jpg')}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              {/* Bottom Editorial Floating Caption */}
-              <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-xl shadow-md border border-outline-variant/30 max-w-[280px]">
-                <p className="font-label-md text-label-md font-semibold text-primary">
-                  {isZh ? '曹翱璇 Jessica Cao' : 'Jessica Cao'}
-                </p>
-                <p className="font-body-sm text-body-sm text-secondary">
-                  {isZh ? '创办人 • 整合取向心理治疗师' : 'Founder & Integrative Psychotherapist'}
-                </p>
-                <p className="font-body-sm text-[11px] text-on-surface-variant mt-1 leading-tight">
-                  {isZh
-                    ? '提供芝加哥线下个案咨询与全州受保护远程视频服务。'
-                    : 'Offering in-person sessions in Chicago & secure telehealth statewide.'}
-                </p>
-              </div>
             </div>
           </div>
         </div>
