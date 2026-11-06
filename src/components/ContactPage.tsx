@@ -108,8 +108,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <div className="max-w-xl mx-auto pt-2">
             <p className="font-body-md text-sm sm:text-base text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-sm">
               {language === 'zh'
-                ? '在安详与被倾听的对话中，开启属于您的心理修护与自我重逢。'
-                : 'A safe, culturally grounding space to explore questions, share what hurts, and begin with unhurried care.'}
+                ? '在安详与被倾听的对话中，开启属于您的心理修护与自我重逢'
+                : 'A safe, culturally grounding space to explore questions, share what hurts, and begin with unhurried care'}
             </p>
           </div>
         </div>

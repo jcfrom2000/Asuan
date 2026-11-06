@@ -43,8 +43,8 @@ export const IndividualTherapyPage: React.FC<IndividualTherapyPageProps> = ({
 
           <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-3xl leading-relaxed mb-8 drop-shadow-sm">
             {isZh
-              ? '创伤知情、具有文化回应性的个体心理咨询空间，支持焦虑、抑郁、创伤、关系模式、身份探索与跨文化压力。'
-              : 'A culturally responsive, trauma-informed space for anxiety, depression, trauma, relationship patterns, identity questions, and cross-cultural stress.'}
+              ? '创伤知情、具有文化回应性的个体心理咨询空间，支持焦虑、抑郁、创伤、关系模式、身份探索与跨文化压力'
+              : 'A culturally responsive, trauma-informed space for anxiety, depression, trauma, relationship patterns, identity questions, and cross-cultural stress'}
           </p>
 
           <button

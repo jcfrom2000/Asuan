@@ -63,11 +63,11 @@ export const ConsultationSupervisionPage: React.FC<ConsultationSupervisionPagePr
               {isZh ? '临床个案督导与同行咨询' : 'Clinical Supervision & Consultation'}
             </h1>
 
-            {/* Subtitle: Exact text from reference mockup */}
-            <p className="font-headline-md italic text-xl sm:text-2xl md:text-3xl text-[#e5edf2] font-normal tracking-wide mb-8 sm:mb-10 leading-relaxed drop-shadow-sm">
+            {/* Subtitle (Unified: No Italics, No Punctuation) */}
+            <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e5edf2] font-normal max-w-2xl leading-relaxed mb-8 sm:mb-10 drop-shadow-sm">
               {isZh
                 ? '滋养与赋能新一代心理健康专业人士'
-                : 'nurturing the next generation of mental health professionals'}
+                : 'Nurturing the next generation of mental health professionals'}
             </p>
 
             {/* Hero CTA Button */}

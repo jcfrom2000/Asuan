@@ -39,8 +39,8 @@ export const SexIntimacyTherapyPage: React.FC<SexIntimacyTherapyPageProps> = ({
 
           <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-3xl leading-relaxed mb-8 drop-shadow-sm">
             {isZh
-              ? '由 AASECT 认证性治疗师（CST）提供性积极、具有文化回应性的心理治疗，支持性困扰、亲密障碍、性创伤、宗教性羞耻与 LGBTQ+ 身份探索。'
-              : 'Sex-positive, culturally responsive therapy for sexual concerns, intimacy barriers, sexual trauma, religious sexual shame, and LGBTQ+ identity —provided by an AASECT Certified Sex Therapist (CST).'}
+              ? '由 AASECT 认证性治疗师（CST）提供性积极、具有文化回应性的心理治疗，支持性困扰、亲密障碍、性创伤、宗教性羞耻与 LGBTQ+ 身份探索'
+              : 'Sex-positive, culturally responsive therapy for sexual concerns, intimacy barriers, sexual trauma, religious sexual shame, and LGBTQ+ identity — provided by an AASECT Certified Sex Therapist (CST)'}
           </p>
 
           <button

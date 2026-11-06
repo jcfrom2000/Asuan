@@ -42,8 +42,8 @@ export const CoupleFamilyTherapyPage: React.FC<CoupleFamilyTherapyPageProps> = (
 
           <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-3xl leading-relaxed mb-8 drop-shadow-sm">
             {isZh
-              ? '适合希望理解反复出现的互动循环、减少彼此指责，并在文化、代际、信任与亲密议题上建立更可持续关系方式的伴侣与家庭。'
-              : 'For couples and families who want to understand recurring interaction patterns, reduce blame, and build more workable ways of relating across culture, generations, trust, and intimacy.'}
+              ? '适合希望理解反复出现的互动循环、减少彼此指责，并在文化、代际、信任与亲密议题上建立更可持续关系方式的伴侣与家庭'
+              : 'For couples and families who want to understand recurring interaction patterns, reduce blame, and build more workable ways of relating across culture, generations, trust, and intimacy'}
           </p>
 
           <button

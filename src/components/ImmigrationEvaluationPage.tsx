@@ -182,7 +182,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
           <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-2xl leading-relaxed mb-8">
             {isZh
               ? '全面严谨、扎根文化回应性与法庭证据标准的心理评估'
-              : 'comprehensive, culturally sensitive, and legally grounded psychological evaluation'}
+              : 'Comprehensive, culturally sensitive, and legally grounded psychological evaluation'}
           </p>
 
           <button

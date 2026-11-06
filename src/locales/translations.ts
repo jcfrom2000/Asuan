@@ -9,7 +9,7 @@ export const translations = {
       switchLanguageAria: 'Switch language to Chinese',
     },
     hero: {
-      headline: 'Every morning is a new beginning.',
+      headline: 'Every Morning Is A New Beginning.',
       subtext: 'A serene, culturally humble sanctuary tailored for first-generation immigrants, international students, creative professionals, and multicultural couples seeking genuine relational healing.',
       ctaPrimary: 'Schedule Consultation',
       ctaSecondary: 'Explore Care Paths',

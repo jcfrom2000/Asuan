@@ -99,8 +99,8 @@ export const FaqPage: React.FC<FaqPageProps> = ({
 
           <p className="font-body-md text-base sm:text-lg text-[#e8eae4] font-normal max-w-2xl leading-relaxed drop-shadow-sm">
             {isZh
-              ? '清晰透明地解答执照执业范围、保险与自费政策、性治疗伦理规范（纯谈话无触碰）及移民心理评估要点。'
-              : 'Clear, compassionate answers regarding session fees, licensure (IL & MI), insurance & superbills, ethics of sex therapy, and immigration evaluations.'}
+              ? '清晰透明地解答执照执业范围、保险与自费政策、性治疗伦理规范（纯谈话无触碰）及移民心理评估要点'
+              : 'Clear, compassionate answers regarding session fees, licensure (IL & MI), insurance & superbills, ethics of sex therapy, and immigration evaluations'}
           </p>
         </div>
       </header>

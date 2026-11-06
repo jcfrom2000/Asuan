@@ -175,9 +175,9 @@ export const CommunityWorkshopsPage: React.FC<CommunityWorkshopsPageProps> = ({
               {isZh ? '团体辅导与社区空间' : 'Community Workshops & Groups Spaces'}
             </h1>
 
-            {/* Sub-quote */}
-            <p className="font-headline-md italic text-xl sm:text-2xl md:text-3xl text-[#f3dfce] font-normal tracking-wide mb-8 sm:mb-10 leading-relaxed">
-              {isZh ? '“疗愈发生于深层联结之中。”' : '“Healing happens in connection.”'}
+            {/* Subheading (Unified: No Italics, No Punctuation) */}
+            <p className="font-body-md text-base sm:text-lg md:text-xl text-[#f3dfce] font-normal max-w-2xl leading-relaxed mb-8 sm:mb-10">
+              {isZh ? '疗愈发生于深层联结之中' : 'Healing happens in connection'}
             </p>
 
             {/* CTA Button */}

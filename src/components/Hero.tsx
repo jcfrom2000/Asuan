@@ -92,8 +92,8 @@ export const Hero: React.FC<HeroProps> = ({
         <source src={videoSourceUrl} type="video/mp4" />
       </video>
 
-      {/* Gentle Contrast Overlay for White Headline Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55 pointer-events-none z-2" />
+      {/* Gentle Dark Contrast Mask Overlay for White Headline Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70 pointer-events-none z-2" />
 
       {/* 4. Hero Content Container */}
       <div className="relative max-w-[1240px] mx-auto px-5 md:px-16 z-10 w-full">

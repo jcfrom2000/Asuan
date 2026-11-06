@@ -49,7 +49,7 @@ export const SolutionFocusedCoachingPage: React.FC<SolutionFocusedCoachingPagePr
           <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-2xl leading-relaxed mb-8">
             {isZh
               ? '高度聚焦、以行动为导向的短期赋能干预'
-              : 'highly targeted, action-oriented, short-term intervention'}
+              : 'Highly targeted, action-oriented, short-term intervention'}
           </p>
 
           <button
