@@ -24,6 +24,7 @@ import { ConsultationSupervisionPage } from './components/ConsultationSupervisio
 import { SexIntimacyTherapyPage } from './components/SexIntimacyTherapyPage';
 import { CoupleFamilyTherapyPage } from './components/CoupleFamilyTherapyPage';
 import { IndividualTherapyPage } from './components/IndividualTherapyPage';
+import { NotFoundPage } from './components/NotFoundPage';
 import { updatePageSeo, PageRoute } from './utils/seo';
 import { useScrollReveal } from './utils/useScrollReveal';
 
@@ -121,8 +122,10 @@ function parseRouteFromLocation(pathname: string): {
     pathWithoutLang === '/work-with-me/supervision'
   ) {
     page = 'consultation-supervision';
-  } else {
+  } else if (pathWithoutLang === '/' || pathWithoutLang === '') {
     page = 'home';
+  } else {
+    page = '404';
   }
 
   return { page, language };
@@ -151,6 +154,21 @@ export default function App() {
   useEffect(() => {
     updatePageSeo({ page: currentPage, language });
   }, [currentPage, language]);
+
+  // Ensure view scroll resets to the top instantly whenever page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    const rAF = requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+
+    return () => cancelAnimationFrame(rAF);
+  }, [currentPage]);
 
   // Activate serene scroll reveal effect across text & sections
   useScrollReveal([currentPage, language]);
@@ -477,6 +495,14 @@ export default function App() {
             onOpenContact={() => handleSelectTab('contact')}
             onNavigateHome={() => handleSelectTab('home')}
             onNavigateToTab={(tabId: string) => handleSelectTab(tabId)}
+          />
+        );
+      case '404':
+        return (
+          <NotFoundPage
+            language={language}
+            onNavigateHome={() => handleSelectTab('home')}
+            onNavigateContact={() => handleSelectTab('contact')}
           />
         );
       case 'home':

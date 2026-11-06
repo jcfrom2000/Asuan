@@ -12,7 +12,8 @@ export type PageRoute =
   | 'consultation-supervision'
   | 'sex-therapy'
   | 'couple-family-therapy'
-  | 'individual-therapy';
+  | 'individual-therapy'
+  | '404';
 
 export interface SeoConfig {
   page: PageRoute;
@@ -20,6 +21,20 @@ export interface SeoConfig {
 }
 
 const SEO_DATA: Record<PageRoute, Record<Language, { title: string; description: string; canonicalPath: string; keywords: string }>> = {
+  '404': {
+    en: {
+      title: '404 - Page Not Found | OverStream Therapy',
+      description: 'The requested path could not be found.',
+      canonicalPath: '/404',
+      keywords: '404, page not found, overstream therapy',
+    },
+    zh: {
+      title: '404 - 寻处未至 | OverStream Therapy 在溪心理',
+      description: '您寻访的页面可能已被移动或不存在。',
+      canonicalPath: '/zh/404',
+      keywords: '404, 寻处未至, 页面不存在, 在溪心理',
+    },
+  },
   'individual-therapy': {
     en: {
       title: 'Individual Therapy | Trauma-Informed Counseling | OverStream Therapy',
