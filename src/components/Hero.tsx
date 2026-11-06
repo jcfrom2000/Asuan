@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { getAssetUrl } from '../utils/assets';
@@ -21,8 +21,30 @@ export const Hero: React.FC<HeroProps> = ({
 
   const isZh = language === 'zh';
   const headlineText = t.hero.headline;
-  // Letter-by-letter split for both English and Chinese
-  const characters = headlineText.split('');
+
+  // Process text into tokens (words for English, character clusters for Chinese)
+  // while preserving sequential character animation delay indices across tokens.
+  const tokenData = useMemo(() => {
+    let rawTokens: string[] = [];
+    if (isZh) {
+      // Split Chinese by punctuation or logical character pairs/triplets
+      rawTokens = headlineText.split(/(?<=[\uff0c\u3002])|/u).filter(Boolean);
+    } else {
+      // Split English by spaces to preserve unbreakable word boundaries
+      rawTokens = headlineText.split(' ');
+    }
+
+    let globalLetterCount = 0;
+    return rawTokens.map((token) => {
+      const chars = token.split('');
+      const charList = chars.map((char) => {
+        const delayIndex = globalLetterCount;
+        globalLetterCount++;
+        return { char, delayIndex };
+      });
+      return { token, letters: charList };
+    });
+  }, [headlineText, isZh]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -41,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({
       id="home"
       className="relative w-full overflow-hidden bg-gradient-to-b from-[#f2ece3] via-[#e8ece3] to-[#fafaf4] pt-28 pb-16 md:pb-28 min-h-[420px] sm:min-h-[480px] flex items-center justify-center"
     >
-      {/* 1. Poster Image Placeholder (Rendered instantly for zero LCP delay & fast paint) */}
+      {/* 1. Poster Image Placeholder */}
       <img
         src={getAssetUrl('assets/videos/hero-nature-dawn-poster.jpg')}
         alt={t.imageAlts.heroLandscape}
@@ -74,28 +96,39 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55 pointer-events-none z-2" />
 
       {/* 4. Hero Content Container */}
-      <div className="relative max-w-[1240px] mx-auto px-5 md:px-16 z-10">
-        <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto py-12 md:py-16 px-4">
+      <div className="relative max-w-[1240px] mx-auto px-5 md:px-16 z-10 w-full">
+        <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto py-12 md:py-16 px-2 sm:px-4">
           <div className="w-full space-y-6 z-10 flex flex-col items-center text-center">
-            <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal tracking-tight max-w-xl mx-auto leading-tight md:leading-[1.2] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] flex flex-wrap justify-center">
-              {characters.map((char, index) => {
-                const isSpace = char === ' ';
-                return (
+            
+            {/* Headline with Word-Boundary Wrap Protection & Crisp Text Shadow */}
+            <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal tracking-tight max-w-3xl mx-auto leading-relaxed md:leading-snug">
+              <div className="flex flex-wrap justify-center items-center gap-x-[0.35em] gap-y-1 sm:gap-y-2 max-w-xl sm:max-w-2xl mx-auto">
+                {tokenData.map(({ token, letters }, tokenIdx) => (
                   <span
-                    key={`${char}-${index}`}
-                    className="animate-letter-pop inline-block whitespace-pre"
-                    style={{
-                      animationDelay: `${index * (isZh ? 110 : 40)}ms`,
-                    }}
+                    key={`token-${tokenIdx}`}
+                    className="inline-block whitespace-nowrap"
                   >
-                    {isSpace ? '\u00A0' : char}
+                    {letters.map(({ char, delayIndex }, charIdx) => (
+                      <span
+                        key={`char-${tokenIdx}-${charIdx}`}
+                        className="animate-letter-pop inline-block whitespace-pre text-white [text-shadow:_0_2px_14px_rgba(0,0,0,0.95),_0_1px_4px_rgba(0,0,0,0.9)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+                        style={{
+                          animationDelay: `${delayIndex * (isZh ? 110 : 45)}ms`,
+                        }}
+                      >
+                        {char}
+                      </span>
+                    ))}
                   </span>
-                );
-              })}
+                ))}
+              </div>
             </h1>
+
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+
