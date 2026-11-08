@@ -22,8 +22,19 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [mobileExpandedId, setMobileExpandedId] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const t = translations[language];
+
+  // Scroll detection for transparent header styling
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Auto-expand mobile submenu for active tab
   useEffect(() => {
@@ -82,7 +93,13 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#fafaf4]/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-[#2e382b]/10">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#fafaf4]/55 backdrop-blur-xs shadow-[0_2px_12px_rgba(46,56,43,0.05)] border-b border-[#2e382b]/10'
+          : 'bg-[#fafaf4]/80 backdrop-blur-sm border-b border-[#2e382b]/05'
+      }`}
+    >
       <div className="h-20 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between gap-3 lg:gap-4 xl:gap-6">
         {/* Brand / Logo */}
         <div className="flex items-center gap-4 lg:gap-6 shrink-0">

@@ -13,6 +13,7 @@ export type PageRoute =
   | 'sex-therapy'
   | 'couple-family-therapy'
   | 'individual-therapy'
+  | 'privacy'
   | '404';
 
 export interface SeoConfig {
@@ -21,6 +22,20 @@ export interface SeoConfig {
 }
 
 const SEO_DATA: Record<PageRoute, Record<Language, { title: string; description: string; canonicalPath: string; keywords: string }>> = {
+  privacy: {
+    en: {
+      title: 'Privacy Policy | OverStream Therapy',
+      description: 'Privacy Policy and Data Protection Notice for website visitors of OverStream Therapy.',
+      canonicalPath: '/privacy',
+      keywords: 'privacy policy, data protection, cookies, analytics, overstream therapy',
+    },
+    zh: {
+      title: '隐私权政策 (Privacy Policy) | OverStream Therapy 在溪心理',
+      description: 'OverStream Therapy 在溪心理网站访客隐私权政策与个人信息保护声明。',
+      canonicalPath: '/zh/privacy',
+      keywords: '隐私政策, 个人信息保护, Cookie, 网站数据分析, 在溪心理',
+    },
+  },
   '404': {
     en: {
       title: '404 - Page Not Found | OverStream Therapy',

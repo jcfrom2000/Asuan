@@ -3,10 +3,6 @@ import { ArrowRight, ShieldCheck, Scale, Globe, FileText, CheckCircle2, ChevronR
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { getAssetUrl } from '../utils/assets';
-import statueOfLibertyImg from '../assets/images/immigration-statue-of-liberty.jpg';
-import courtCommunityFlagImg from '../assets/images/immigration-court-community-flag.jpg';
-import psychEvalBotanicalImg from '../assets/images/immigration-psychological-evaluation-botanical.jpg';
-import loveThyNeighborRallyImg from '../assets/images/immigration-love-thy-neighbor-rally.jpg';
 
 interface ImmigrationEvaluationPageProps {
   language: Language;
@@ -180,7 +176,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src={statueOfLibertyImg}
+            src={getAssetUrl('assets/images/overstream-therapy-immigration-statue-of-liberty.jpg')}
             alt={isZh ? '自由女神像与移民心理评估' : 'Statue of Liberty - Immigration Psychological Evaluation'}
             fetchPriority="high"
             decoding="async"
@@ -354,7 +350,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             <div className="order-1 lg:order-2 lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src={courtCommunityFlagImg}
+                  src={getAssetUrl('assets/images/overstream-therapy-immigration-court-community-flag.jpg')}
                   alt={t.imageAlts.evalAmericanFlag}
                   loading="lazy"
                   decoding="async"
@@ -380,7 +376,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             <div className="lg:col-span-5 reveal-on-scroll">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src={psychEvalBotanicalImg}
+                  src={getAssetUrl('assets/images/overstream-therapy-immigration-psychological-evaluation-botanical.jpg')}
                   alt="Everyone is Welcome - Concrete Wall"
                   loading="lazy"
                   decoding="async"
@@ -560,7 +556,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src={loveThyNeighborRallyImg}
+                  src={getAssetUrl('assets/images/overstream-therapy-immigration-love-thy-neighbor-rally.jpg')}
                   alt={t.imageAlts.evalLoveThyNeighbor}
                   loading="lazy"
                   decoding="async"

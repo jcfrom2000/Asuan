@@ -24,6 +24,7 @@ import { ConsultationSupervisionPage } from './components/ConsultationSupervisio
 import { SexIntimacyTherapyPage } from './components/SexIntimacyTherapyPage';
 import { CoupleFamilyTherapyPage } from './components/CoupleFamilyTherapyPage';
 import { IndividualTherapyPage } from './components/IndividualTherapyPage';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { updatePageSeo, PageRoute } from './utils/seo';
 import { useScrollReveal } from './utils/useScrollReveal';
@@ -44,7 +45,7 @@ function parseRouteFromLocation(pathname: string): {
   // Dynamically strip unknown GitHub Pages repository name (e.g. /my-repo-name/individual-therapy -> /individual-therapy)
   const segments = cleanPath.split('/').filter(Boolean);
   const knownFirstSegments = [
-    'zh', 'contact', 'about', 'about-jessica', 'faq', 'faqs',
+    'zh', 'contact', 'about', 'about-jessica', 'faq', 'faqs', 'privacy', 'privacy-policy',
     'community', 'community-services', 'community-workshops', 'workshops', 'groups',
     'solution-focused-coaching', 'coaching', 'immigration-evaluation',
     'sex-therapy', 'sex-intimacy-therapy', 'individual-therapy', 'individual-counseling',
@@ -70,6 +71,8 @@ function parseRouteFromLocation(pathname: string): {
     page = 'about';
   } else if (pathWithoutLang === '/faq' || pathWithoutLang === '/faqs') {
     page = 'faq';
+  } else if (pathWithoutLang === '/privacy' || pathWithoutLang === '/privacy-policy') {
+    page = 'privacy';
   } else if (
     pathWithoutLang === '/community' ||
     pathWithoutLang === '/community-services' ||
@@ -278,6 +281,8 @@ export default function App() {
       targetPage = 'couple-family-therapy';
     else if (tabId === 'individual-therapy') {
       targetPage = 'individual-therapy';
+    } else if (tabId === 'privacy' || tabId === 'privacy-policy') {
+      targetPage = 'privacy';
     } else targetPage = 'home';
 
     navigateTo(targetPage, language);
@@ -330,40 +335,9 @@ export default function App() {
     }
   };
 
-  // Privacy Policy Info Modal Content
+  // Privacy Policy Navigation Handler
   const handleOpenPrivacy = () => {
-    setInfoModalContent({
-      titleEn: 'Notice of Privacy Practices (HIPAA)',
-      titleZh: '医疗隐私权与保密实践须知 (HIPAA)',
-      bodyEn: (
-        <div className="space-y-3">
-          <p>
-            This notice describes how medical and mental health information about you may be used and disclosed and how you can get access to this information.
-          </p>
-          <p className="font-semibold text-primary">Confidentiality & Electronic Records:</p>
-          <p>
-            All clinical communications, intake records, session notes, and diagnostic materials are encrypted and maintained in compliance with the Health Insurance Portability and Accountability Act (HIPAA). Telehealth sessions occur through secure, encrypted peer-to-peer portals.
-          </p>
-          <p>
-            Information will only be released with your explicit written authorization, except in circumstances mandated by state law (such as imminent risk of serious physical harm to self or others, or suspected child or elder abuse).
-          </p>
-        </div>
-      ),
-      bodyZh: (
-        <div className="space-y-3">
-          <p>
-            本通知阐明了您的心理健康与临床记录将如何受到保护、规范使用以及您查阅此类信息的法定权利。
-          </p>
-          <p className="font-semibold text-primary">严格保密与电子健康档案：</p>
-          <p>
-            所有临床沟通、初访评估档案、个案记录均严格遵守美国《健康保险携带与责任法案》(HIPAA) 标准进行端到端加密存储。远程视频咨询均在受保护的合规医疗平台上进行。
-          </p>
-          <p>
-            除非获得您的明确书面授权，任何信息绝不对外披露（法律明确规定的法定免除保密义务情形除外，例如对自身或他人存在迫在眉睫的生命安全风险、或涉及虐待儿童/长者之通报义务）。
-          </p>
-        </div>
-      ),
-    });
+    handleSelectTab('privacy');
   };
 
   // No Surprise Act Info Modal Content
@@ -499,6 +473,13 @@ export default function App() {
             onOpenContact={() => handleSelectTab('contact')}
             onNavigateHome={() => handleSelectTab('home')}
             onNavigateToTab={(tabId: string) => handleSelectTab(tabId)}
+          />
+        );
+      case 'privacy':
+        return (
+          <PrivacyPolicyPage
+            language={language}
+            onNavigateHome={() => handleSelectTab('home')}
           />
         );
       case '404':

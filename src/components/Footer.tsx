@@ -102,22 +102,23 @@ export const Footer: React.FC<FooterProps> = ({
                 );
               })}
               <li className="font-body-sm text-xs sm:text-sm pt-1">
-                <button
-                  type="button"
-                  onClick={onOpenPrivacy}
+                <a
+                  href={getCleanPathForNav('privacy', language)}
+                  onClick={(e) => handleLinkClick(e, 'privacy')}
                   className="text-on-surface-variant hover:text-[#a35e3e] transition-colors text-left cursor-pointer"
                 >
                   {t.footer.privacyPolicy}
-                </button>
+                </a>
               </li>
               <li className="font-body-sm text-xs sm:text-sm">
-                <button
-                  type="button"
-                  onClick={onOpenNoSurprise}
-                  className="text-on-surface-variant hover:text-[#a35e3e] transition-colors text-left cursor-pointer"
+                <a
+                  href="https://www.cms.gov/nosurprises"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-on-surface-variant hover:text-[#a35e3e] transition-colors inline-flex items-center gap-1"
                 >
-                  {t.footer.noSurprise}
-                </button>
+                  <span>{t.footer.noSurprise}</span>
+                </a>
               </li>
             </ul>
           </div>
