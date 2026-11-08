@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
+import { getAssetUrl } from '../utils/assets';
 import { Mail, Phone, Calendar, MapPin, ExternalLink, ShieldAlert, Lock, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -29,13 +30,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <img
             className="w-full h-full object-cover object-center transition-opacity duration-700"
             alt={t.imageAlts.contactPoppies}
-            src="/assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg"
-            loading="lazy"
+            src={getAssetUrl('assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}
+            loading="eager"
             decoding="async"
           />
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70 pointer-events-none z-[1]" />
 
         <div className="relative z-10 max-w-[1240px] mx-auto px-5 md:px-16 w-full text-center space-y-3">
           <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl text-white font-normal tracking-tight max-w-2xl mx-auto leading-tight md:leading-[1.2] drop-shadow-sm">
@@ -268,7 +269,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       {/* 4. Section 3: Physical Office & Interactive Map */}
       <section className="w-full py-16 md:py-24 bg-surface border-b border-surface-container">
         <div className="max-w-[1240px] mx-auto px-5 md:px-16 space-y-8">
-          <div className="space-y-2 mb-8">
+          <div className="space-y-2 mb-8 text-center md:text-left">
             <span
               className="font-label-md uppercase tracking-widest text-xs font-medium"
               style={{ color: 'rgb(163, 94, 62)', display: 'inline-block' }}
@@ -283,7 +284,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
             {/* Left: Address & Hours */}
             <div className="h-full flex flex-col">
-              <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl space-y-6 h-full flex flex-col justify-between border border-surface-container shadow-xs">
+              <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl space-y-6 h-full flex flex-col justify-between border border-surface-container shadow-xs text-center md:text-left">
                 <div className="space-y-2">
                   <p className="font-headline-md text-xl md:text-2xl text-primary font-semibold">
                     {cp.officeSection.addressLine1}
@@ -297,7 +298,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                 </div>
 
                 <div className="space-y-3 pt-4 border-t border-surface-container">
-                  <h3 className="font-label-md text-xs uppercase tracking-wider text-on-surface font-semibold flex items-center gap-1.5">
+                  <h3 className="font-label-md text-xs uppercase tracking-wider text-on-surface font-semibold flex items-center justify-center md:justify-start gap-1.5">
                     <Clock className="w-4 h-4 text-secondary" />
                     <span>{cp.officeSection.hoursTitle}</span>
                   </h3>

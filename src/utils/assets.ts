@@ -25,7 +25,11 @@ export function getAssetUrl(path: string): string {
   } else if (!cleanBase.endsWith('/')) {
     cleanBase = `${cleanBase}/`;
   }
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+
+  let cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  if (cleanPath.startsWith('public/')) {
+    cleanPath = cleanPath.slice(7);
+  }
 
   return `${cleanBase}${cleanPath}`;
 }

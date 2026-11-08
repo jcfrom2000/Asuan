@@ -24,7 +24,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({
         <div className="flex justify-center">
           <div className="relative w-28 h-28 rounded-full overflow-hidden shadow-sm border border-outline-variant/30 p-1 bg-surface-container-low">
             <img
-              src={getAssetUrl('public/assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}
+              src={getAssetUrl('assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}
               alt="Botanical Still Life"
               className="w-full h-full object-cover rounded-full filter grayscale contrast-90 brightness-105 opacity-90"
             />
