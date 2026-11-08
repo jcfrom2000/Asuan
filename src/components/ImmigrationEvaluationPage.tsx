@@ -3,6 +3,10 @@ import { ArrowRight, ShieldCheck, Scale, Globe, FileText, CheckCircle2, ChevronR
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { getAssetUrl } from '../utils/assets';
+import statueOfLibertyImg from '../assets/images/immigration-statue-of-liberty.jpg';
+import courtCommunityFlagImg from '../assets/images/immigration-court-community-flag.jpg';
+import psychEvalBotanicalImg from '../assets/images/immigration-psychological-evaluation-botanical.jpg';
+import loveThyNeighborRallyImg from '../assets/images/immigration-love-thy-neighbor-rally.jpg';
 
 interface ImmigrationEvaluationPageProps {
   language: Language;
@@ -171,26 +175,40 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
 
   return (
     <article className="w-full flex flex-col bg-[#fafaf4] text-[#1e251d]">
-      {/* 1. Hero Section */}
-      <header className="relative w-full min-h-[320px] sm:min-h-[360px] md:min-h-[400px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
+      {/* 1. Hero Section with Full-Bleed Statue of Liberty Background */}
+      <header className="relative w-full min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1c241b]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={statueOfLibertyImg}
+            alt={isZh ? '自由女神像与移民心理评估' : 'Statue of Liberty - Immigration Psychological Evaluation'}
+            fetchPriority="high"
+            decoding="async"
+            className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.03] scale-105"
+          />
+          {/* Ambient Dark Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#182017]/80 via-[#182017]/60 to-[#182017]/85" />
+          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#182017]/30 to-[#182017]/80" />
+        </div>
+
         {/* Hero Content */}
-        <div className="relative z-10 max-w-[1000px] mx-auto px-6 sm:px-8 py-16 text-center flex flex-col items-center">
+        <div className="relative z-10 max-w-[1000px] mx-auto px-6 sm:px-8 py-20 text-center flex flex-col items-center">
           <h1 className="font-headline-lg font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#fafaf4] tracking-tight leading-[1.15] mb-5 max-w-3xl drop-shadow-sm">
             {isZh ? '移民心理评估报告' : 'Immigration Psychological Evaluation'}
           </h1>
 
-          <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-2xl leading-relaxed mb-8">
+          <p className="font-body-md text-base sm:text-lg md:text-xl text-[#e8eae4] font-normal max-w-3xl leading-relaxed mb-8 drop-shadow-sm">
             {isZh
-              ? '全面严谨、扎根文化回应性与法庭证据标准的心理评估'
-              : 'Comprehensive, culturally sensitive, and legally grounded psychological evaluation'}
+              ? '为美国移民法庭及各类程序提供严谨、具有文化敏锐度且符合法庭证据标准的心理评估（英语、普通话与粤语直接面谈）'
+              : 'Comprehensive, culturally sensitive, and legally grounded psychological evaluations in English, Mandarin, and Cantonese for immigration proceedings'}
           </p>
 
           <button
             type="button"
-            onClick={() => onOpenBooking(isZh ? '预约移民心理评估初访' : 'Book Immigration Psychological Evaluation')}
-            className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 rounded-full bg-[#fbf7f0] text-primary hover:bg-white transition-all font-label-md text-sm sm:text-base font-medium shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer group"
+            onClick={() => onOpenContact()}
+            className="inline-flex items-center justify-center gap-2.5 px-7 sm:px-8 py-3.5 rounded-full bg-[#fbf7f0] text-[#1e251d] hover:bg-white transition-all font-label-md text-sm sm:text-base font-medium shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer group"
           >
-            <span>{isZh ? '预约评估咨询' : 'Book A Session'}</span>
+            <span>{isZh ? '联系在溪心理 • 评估问询' : 'Contact Practice & Inquire'}</span>
             <ArrowRight className="w-4 h-4 text-[#a35e3e] group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -230,7 +248,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
         <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Column Copy & Case Types */}
-            <div className="lg:col-span-7 flex flex-col space-y-6 reveal-on-scroll">
+            <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col space-y-6 reveal-on-scroll">
               <span className="font-label-md text-xs uppercase tracking-widest text-[#a35e3e] font-semibold">
                 {isZh ? '临床评估类型' : 'Practice Specialization'}
               </span>
@@ -333,10 +351,10 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             </div>
 
             {/* Right Illuminated American Flag & Community Silhouette Image */}
-            <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
+            <div className="order-1 lg:order-2 lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src={getAssetUrl('assets/images/overstream-therapy-immigration-court-community-flag.jpg')}
+                  src={courtCommunityFlagImg}
                   alt={t.imageAlts.evalAmericanFlag}
                   loading="lazy"
                   decoding="async"
@@ -358,38 +376,21 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
       <section className="w-full py-20 md:py-28 bg-[#fafaf4] border-b border-[#2e382b]/8">
         <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left "Everyone is Welcome" Art Banner */}
+            {/* Left "Everyone is Welcome" Photo */}
             <div className="lg:col-span-5 reveal-on-scroll">
-              <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-[#2a2b28] flex flex-col justify-between p-8 sm:p-10 border border-[#2e382b]/15 text-[#fafaf4]">
-                {/* Texture Overlay */}
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                
-                {/* Top Badge */}
-                <div className="relative z-10 flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-[#e8b598]" />
-                  <span className="font-label-md text-xs uppercase tracking-widest text-[#e8b598]">
-                    {isZh ? '包容与庇护' : 'A Culturally Humble Sanctuary'}
-                  </span>
-                </div>
-
-                {/* Central Stylized "EVERYONE IS WELCOME" Banner */}
-                <div className="relative z-10 my-auto py-8">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-headline-lg font-normal uppercase text-center leading-tight">
-                    {isZh ? '这里欢迎' : 'EVERYONE'}
-                    <span className="block text-2xl sm:text-3xl font-serif italic text-[#e8eae4] font-normal my-1">
-                      {isZh ? '每一个人' : 'IS'}
-                    </span>
-                    <span className="inline-block px-4 py-1 rounded-md bg-[#c98357] text-[#24170d] font-bold tracking-wider text-2xl sm:text-3xl md:text-4xl shadow-md">
-                      {isZh ? '真实的你' : 'WELCOME'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bottom Footnote */}
-                <div className="relative z-10 pt-4 border-t border-white/15 text-xs text-[#d1d5cc] leading-relaxed">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
+                <img
+                  src={psychEvalBotanicalImg}
+                  alt="Everyone is Welcome - Concrete Wall"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 text-[#fafaf4] text-xs leading-relaxed">
                   {isZh
-                    ? '提供英语、母语级普通话及粤语直接面谈，全程无需第三方翻译。'
-                    : 'Direct clinical interviews in English, Mandarin, and Cantonese. No outside interpreters required.'}
+                    ? '包容与庇护：提供英语、母语级普通话及粤语直接面谈。'
+                    : 'A culturally humble sanctuary: Direct interviews in English, Mandarin, and Cantonese.'}
                 </div>
               </div>
             </div>
@@ -559,7 +560,7 @@ export const ImmigrationEvaluationPage: React.FC<ImmigrationEvaluationPageProps>
             <div className="lg:col-span-5 reveal-on-scroll reveal-delay-100">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/5] bg-neutral-900 group">
                 <img
-                  src={getAssetUrl('assets/images/overstream-therapy-immigration-love-thy-neighbor-rally.jpg')}
+                  src={loveThyNeighborRallyImg}
                   alt={t.imageAlts.evalLoveThyNeighbor}
                   loading="lazy"
                   decoding="async"

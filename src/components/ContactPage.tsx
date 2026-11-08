@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { getAssetUrl } from '../utils/assets';
-import { Mail, Phone, Calendar, Clock, MapPin, Send, CheckCircle2, ArrowRight, ExternalLink, ShieldAlert, Lock } from 'lucide-react';
+import { Mail, Phone, Calendar, MapPin, ExternalLink, ShieldAlert, Lock, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
 
 interface ContactPageProps {
   language: Language;
@@ -12,113 +11,51 @@ interface ContactPageProps {
 
 export const ContactPage: React.FC<ContactPageProps> = ({
   language,
-  onOpenBooking,
 }) => {
   const t = translations[language];
   const cp = t.contactPage;
+  const isZh = language === 'zh';
 
-  // Interactive Calendar state
-  const [selectedDay, setSelectedDay] = useState<number>(10);
-  const [selectedSlot, setSelectedSlot] = useState<string>('2:00 PM');
-  const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(0);
-
-  // Direct Message Form state
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // Calendar dates mock setup for October / November 2025
-  const months = [
-    {
-      nameEn: 'October 2025',
-      nameZh: '2025年 10月',
-      daysCount: 31,
-      startOffset: 2, // starts on Wednesday (offset 2 for Mon-based index: Mon=0, Tue=1, Wed=2)
-      availableDays: [1, 2, 3, 6, 7, 8, 9, 10, 13, 14, 15, 16, 17, 20, 21, 22, 23, 24, 27, 28, 29, 30, 31],
-    },
-    {
-      nameEn: 'November 2025',
-      nameZh: '2025年 11月',
-      daysCount: 30,
-      startOffset: 5, // starts on Saturday
-      availableDays: [3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25],
-    },
-  ];
-
-  const currentMonth = months[currentMonthIndex];
-
-  const handlePrevMonth = () => {
-    setCurrentMonthIndex((prev) => (prev > 0 ? prev - 1 : prev));
-  };
-
-  const handleNextMonth = () => {
-    setCurrentMonthIndex((prev) => (prev < months.length - 1 ? prev + 1 : prev));
-  };
-
-  const timeSlots = cp.consultationSection.slots || ['10:00 AM', '11:30 AM', '2:00 PM', '3:45 PM'];
-
-  // Handle consultation confirmation click
-  const handleConfirmConsultation = () => {
-    const monthName = language === 'zh' ? currentMonth.nameZh : currentMonth.nameEn;
-    const bookingDetails = `${monthName} Day ${selectedDay} at ${selectedSlot} CST (15-min Initial Consultation)`;
-    onOpenBooking(bookingDetails);
-  };
-
-  // Handle direct inquiry form submission
-  const handleSubmitMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 900);
-  };
+  const newClientUrl = 'https://overstreamtherapy.clientsecure.me/request/service';
+  const portalSignInUrl = 'https://overstreamtherapy.clientsecure.me/sign-in';
+  const officialPhone = '(312) 967-0117';
+  const officialEmail = 'info@overstreamtherapy.com';
 
   return (
     <div className="w-full flex flex-col bg-surface">
-      {/* 1. Hero Header Section with Floral Poppies Vignette */}
-      <section className="relative w-full overflow-hidden py-24 md:py-32 bg-[#1c241b] min-h-[460px] md:min-h-[520px] flex items-center justify-center">
-        {/* Full-bleed studio background photo (CLS=0 with fixed container) */}
+      {/* 1. Hero Header Section */}
+      <section className="relative w-full overflow-hidden py-24 md:py-32 bg-[#1c241b] min-h-[420px] md:min-h-[480px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img
             className="w-full h-full object-cover object-center transition-opacity duration-700"
             alt={t.imageAlts.contactPoppies}
-            src={getAssetUrl('assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg')}
+            src="/assets/images/overstream-therapy-office-white-poppies-botanical-still-life.jpg"
             loading="lazy"
             decoding="async"
           />
         </div>
 
-        {/* Ambient Dark Gradient Overlay for High Contrast White Text */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/65 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70 pointer-events-none" />
 
-        {/* Hero Title & Subtext */}
         <div className="relative z-10 max-w-[1240px] mx-auto px-5 md:px-16 w-full text-center space-y-3">
-          <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl text-white font-normal tracking-tight max-w-xl mx-auto leading-tight md:leading-[1.2] drop-shadow-sm">
+          <h1 className="font-display-hero text-3xl sm:text-4xl md:text-5xl text-white font-normal tracking-tight max-w-2xl mx-auto leading-tight md:leading-[1.2] drop-shadow-sm">
             {cp.heroTitle}
           </h1>
 
           <div className="max-w-xl mx-auto pt-2">
             <p className="font-body-md text-sm sm:text-base text-white/90 max-w-lg mx-auto leading-relaxed drop-shadow-sm">
-              {language === 'zh'
-                ? '在安详与被倾听的对话中，开启属于您的心理修护与自我重逢'
-                : 'A safe, culturally grounding space to explore questions, share what hurts, and begin with unhurried care'}
+              {isZh
+                ? '在安详与被倾听的对话中，开启属于您的心理修护与自我重逢。所有临床预约与数据均通过 SimplePractice 官方加密系统保障。'
+                : 'A safe, culturally grounding space to explore questions, share what hurts, and begin with unhurried care.'}
             </p>
           </div>
         </div>
       </section>
 
-      {/* 2. Section 1: Direct Communication (Simple, Understated & Pure) */}
+      {/* 2. Section 1: Three Primary Contact Cards */}
       <section className="w-full py-16 md:py-24 bg-surface border-b border-surface-container">
-        <div className="max-w-[1000px] mx-auto px-5 md:px-16 text-center space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2 mb-10 md:mb-14">
+        <div className="max-w-[1240px] mx-auto px-5 md:px-16 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
             <span
               className="font-label-md uppercase tracking-widest text-xs font-medium"
               style={{ color: 'rgb(163, 94, 62)', display: 'inline-block' }}
@@ -133,259 +70,205 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1060px] mx-auto pt-2">
-            {/* Email Card */}
-            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-between items-center space-y-3 border border-surface-container/60 shadow-xs hover:border-secondary/40 transition-colors">
-              <div className="flex flex-col items-center space-y-2">
-                <div className="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary mb-1">
-                  <Mail className="w-6 h-6" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch max-w-[1140px] mx-auto">
+            {/* Card 1: New Clients Service Request */}
+            <div className="bg-surface-container-low p-7 md:p-8 rounded-2xl border-2 border-[#a35e3e]/30 hover:border-[#a35e3e] shadow-sm flex flex-col justify-between space-y-6 transition-all group relative overflow-hidden">
+              <div className="absolute -top-3 -right-3 w-16 h-16 bg-[#f3dfce] rounded-full blur-xl opacity-60 pointer-events-none" />
+              
+              <div className="space-y-4 relative z-10">
+                <div className="w-12 h-12 rounded-full bg-[#f3dfce] flex items-center justify-center text-[#a35e3e]">
+                  <Calendar className="w-6 h-6" />
                 </div>
-                <p className="font-label-md text-xs uppercase tracking-wider text-secondary font-medium">
-                  {cp.directSection.emailLabel}
+
+                <div className="space-y-1.5">
+                  <span className="font-label-md text-xs uppercase tracking-wider text-[#a35e3e] font-semibold">
+                    {isZh ? '新客户 / 首次咨询' : 'New Clients'}
+                  </span>
+                  <h3 className="font-headline-md text-xl font-normal text-primary">
+                    {isZh ? '在线预约初访与咨询项目' : 'Request Intake & Service'}
+                  </h3>
+                </div>
+
+                <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                  {isZh
+                    ? '首次来访请在此选择咨询服务方向（个体、伴侣、性心理、辅导或移民评估），直接在 SimplePractice 官方 Portal 选择合适的时间锁定 15 分钟初访。'
+                    : 'Select your care path and schedule a 15-minute complimentary consultation via our HIPAA-compliant portal.'}
                 </p>
+
+                <div className="pt-2 flex flex-col space-y-2 text-xs text-on-surface-variant/90">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#a35e3e] shrink-0" />
+                    <span>{isZh ? '15分钟免费线上/电话初访沟通' : '15-min complimentary consultation'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#a35e3e] shrink-0" />
+                    <span>{isZh ? '严格遵循 HIPAA 医疗数据隐私加密' : 'Full HIPAA encryption standard'}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 relative z-10">
                 <a
-                  href={`mailto:${cp.directSection.emailAddress}`}
-                  className="font-body-lg text-sm sm:text-base font-medium text-primary hover:text-secondary transition-colors break-all select-all"
+                  href={newClientUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-white hover:bg-primary-container font-label-md text-xs sm:text-sm font-semibold transition-all shadow-xs group-hover:shadow-md cursor-pointer"
                 >
-                  {cp.directSection.emailAddress}
+                  <span>{isZh ? '前往 SimplePractice 提交申请' : 'Request Appointment'}</span>
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
-              <p className="font-body-sm text-xs text-on-surface-variant/80">
-                {language === 'zh' ? '欢迎随时致信咨询详情' : 'Response within 1-2 business days'}
-              </p>
             </div>
 
-            {/* Phone Card */}
-            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-between items-center space-y-3 border border-surface-container/60 shadow-xs hover:border-secondary/40 transition-colors">
-              <div className="flex flex-col items-center space-y-2">
-                <div className="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary mb-1">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <p className="font-label-md text-xs uppercase tracking-wider text-secondary font-medium">
-                  {cp.directSection.phoneLabel}
-                </p>
-                <a
-                  href="tel:3129670117"
-                  className="font-body-lg text-sm sm:text-base font-medium text-primary hover:text-secondary transition-colors select-all"
-                >
-                  {cp.directSection.phoneNumber}
-                </a>
-              </div>
-              <p className="font-body-sm text-xs text-on-surface-variant/80">
-                {language === 'zh' ? '支持语音留言与加密短信' : 'Confidential voicemail & SMS'}
-              </p>
-            </div>
-
-            {/* Existing Clients Portal Card (SimplePractice) */}
-            <div className="p-6 md:p-8 bg-surface-container-low rounded-xl text-center flex flex-col justify-between items-center space-y-3 border border-surface-container/60 shadow-xs hover:border-[#a35e3e]/40 transition-colors">
-              <div className="flex flex-col items-center space-y-2">
-                <div className="w-12 h-12 rounded-full bg-[#f3e9e2] flex items-center justify-center text-[#a35e3e] mb-1">
+            {/* Card 2: Existing Clients Portal */}
+            <div className="bg-surface-container-low p-7 md:p-8 rounded-2xl border border-surface-container/80 hover:border-secondary/40 shadow-sm flex flex-col justify-between space-y-6 transition-all group">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-secondary-container/60 flex items-center justify-center text-secondary">
                   <Lock className="w-6 h-6" />
                 </div>
-                <p className="font-label-md text-xs uppercase tracking-wider text-[#a35e3e] font-medium">
-                  {cp.directSection.portalLabel}
-                </p>
-                <p className="font-body-lg text-sm sm:text-base font-medium text-primary">
-                  {cp.directSection.portalTitle}
-                </p>
-                <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+
+                <div className="space-y-1.5">
+                  <span className="font-label-md text-xs uppercase tracking-wider text-secondary font-semibold">
+                    {cp.directSection.portalLabel}
+                  </span>
+                  <h3 className="font-headline-md text-xl font-normal text-primary">
+                    {cp.directSection.portalTitle}
+                  </h3>
+                </div>
+
+                <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant leading-relaxed">
                   {cp.directSection.portalDesc}
                 </p>
+
+                <div className="pt-2 flex flex-col space-y-2 text-xs text-on-surface-variant/90">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-secondary shrink-0" />
+                    <span>{isZh ? '加密私密信息收发' : 'Confidential client messaging'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-secondary shrink-0" />
+                    <span>{isZh ? '一键下载保险 Superbill 发票' : 'Insurance superbill access'}</span>
+                  </div>
+                </div>
               </div>
-              <a
-                href="https://overstreamtherapy.clientsecure.me/sign-in"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-on-primary hover:bg-primary-container text-xs font-label-md font-medium transition-colors shadow-2xs"
-              >
-                <span>{cp.directSection.portalBtn}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+
+              <div className="pt-4">
+                <a
+                  href={portalSignInUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+                >
+                  <span>{cp.directSection.portalBtn}</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 3: Direct Phone & Email */}
+            <div className="bg-surface-container-low p-7 md:p-8 rounded-2xl border border-surface-container/80 hover:border-secondary/40 shadow-sm flex flex-col justify-between space-y-6 transition-all group">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-full bg-[#e8ece3] flex items-center justify-center text-primary">
+                  <Phone className="w-6 h-6" />
+                </div>
+
+                <div className="space-y-1.5">
+                  <span className="font-label-md text-xs uppercase tracking-wider text-primary font-semibold">
+                    {isZh ? '直接联系' : 'Direct Line & Email'}
+                  </span>
+                  <h3 className="font-headline-md text-xl font-normal text-primary">
+                    {isZh ? '电话与官方电子邮箱' : 'Direct Phone & Email'}
+                  </h3>
+                </div>
+
+                <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                  {isZh
+                    ? '如需在提交申请前简单咨询业务、了解督导或商业合作，欢迎直接电话或致信。电话支持保密语音留言与加密 SMS。'
+                    : 'For general inquiries, supervision questions, or media speaking, feel free to reach out directly via telephone or email.'}
+                </p>
+
+                <div className="space-y-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/70 border border-surface-container flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-secondary shrink-0" />
+                    <div>
+                      <p className="font-label-md text-[11px] text-on-surface-variant uppercase">{isZh ? '诊所电话' : 'Phone'}</p>
+                      <a href={`tel:${officialPhone.replace(/[^0-9]/g, '')}`} className="font-body-md text-xs sm:text-sm font-semibold text-primary hover:text-secondary transition-colors">
+                        {officialPhone}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-white/70 border border-surface-container flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-secondary shrink-0" />
+                    <div>
+                      <p className="font-label-md text-[11px] text-on-surface-variant uppercase">{isZh ? '加密邮箱' : 'Email'}</p>
+                      <a href={`mailto:${officialEmail}`} className="font-body-md text-xs sm:text-sm font-semibold text-primary hover:text-secondary transition-colors break-all">
+                        {officialEmail}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 text-center">
+                <span className="font-body-sm text-xs text-on-surface-variant/80">
+                  {isZh ? '通常在 1-2 个工作日内给予回复' : 'Replies within 1-2 business days'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Section 2: Calendly Consultation Scheduling (Placed ABOVE Map) */}
-      <section className="w-full py-16 md:py-24 bg-surface-container-low border-b border-surface-container">
-        <div className="max-w-[880px] mx-auto px-5 md:px-16 space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2 mb-10 md:mb-14">
-            <span
-              className="font-label-md uppercase tracking-widest text-xs font-medium"
-              style={{ color: 'rgb(163, 94, 62)', display: 'inline-block' }}
-            >
-              {cp.consultationSection.eyebrow}
-            </span>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
-              {cp.consultationSection.heading}
-            </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed">
-              {cp.consultationSection.description}
-            </p>
-          </div>
-
-          {/* Interactive Calendly Card */}
-          <div className="bg-surface-container-lowest p-6 md:p-10 rounded-2xl shadow-sm border border-surface-container space-y-6">
-            {/* Header: Month & Timezone */}
-            <div className="flex items-center justify-between pb-4 border-b border-surface-container">
+      {/* 3. Section 2: HIPAA Privacy & Intake Explanation */}
+      <section className="w-full py-16 md:py-20 bg-surface-container-low border-b border-surface-container">
+        <div className="max-w-[920px] mx-auto px-5 md:px-16 space-y-8">
+          <div className="bg-white p-7 md:p-10 rounded-2xl shadow-xs border border-surface-container space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#f3dfce] flex items-center justify-center text-[#a35e3e] shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
               <div>
-                <p className="font-label-md text-base text-primary uppercase tracking-wider font-semibold">
-                  {language === 'zh' ? currentMonth.nameZh : currentMonth.nameEn}
+                <h3 className="font-headline-md text-xl sm:text-2xl text-primary font-normal">
+                  {isZh ? '为何使用 SimplePractice 官方安全门户？' : 'Why We Use SimplePractice Client Portal'}
+                </h3>
+                <p className="font-body-sm text-xs text-secondary">
+                  {isZh ? '符合美国 HIPAA 法规与医疗伦理隐私承诺' : 'HIPAA Compliant Security & Ethical Practice Commitment'}
                 </p>
-                <p className="font-body-sm text-xs text-secondary mt-0.5">
-                  {cp.consultationSection.timezone}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 font-body-sm text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              <div className="space-y-2">
+                <p className="font-label-md text-sm text-primary font-semibold">
+                  {isZh ? '1. 真正的端到端医疗加密' : '1. End-to-End Medical Encryption'}
+                </p>
+                <p>
+                  {isZh
+                    ? '心理咨询涉及您最私密的心灵议题。SimplePractice 门户采用高强度端到端加密，确保您的个人信息与咨询记录符合最高医疗隐私标准。'
+                    : 'SimplePractice provides bank-grade encryption ensuring your health information remains strictly confidential.'}
                 </p>
               </div>
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={handlePrevMonth}
-                  disabled={currentMonthIndex === 0}
-                  className={`w-9 h-9 rounded-full flex items-center justify-center border transition-colors ${
-                    currentMonthIndex === 0
-                      ? 'border-surface-container text-outline-variant cursor-not-allowed opacity-50'
-                      : 'border-surface-container-high hover:bg-surface-container text-on-surface cursor-pointer'
-                  }`}
-                  aria-label="Previous month"
-                >
-                  <span className="material-symbols-outlined text-lg">chevron_left</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextMonth}
-                  disabled={currentMonthIndex === months.length - 1}
-                  className={`w-9 h-9 rounded-full flex items-center justify-center border transition-colors ${
-                    currentMonthIndex === months.length - 1
-                      ? 'border-surface-container text-outline-variant cursor-not-allowed opacity-50'
-                      : 'border-surface-container-high hover:bg-surface-container text-on-surface cursor-pointer'
-                  }`}
-                  aria-label="Next month"
-                >
-                  <span className="material-symbols-outlined text-lg">chevron_right</span>
-                </button>
-              </div>
-            </div>
 
-            {/* Days of Week Header */}
-            <div className="grid grid-cols-7 gap-1 text-center font-label-md text-xs uppercase text-on-surface-variant pb-1 font-medium">
-              {cp.consultationSection.daysOfWeek.map((day, idx) => (
-                <span key={idx} className="py-1">
-                  {day}
-                </span>
-              ))}
-            </div>
-
-            {/* Calendar Days Grid */}
-            <div className="grid grid-cols-7 gap-1.5 text-center font-body-sm text-sm">
-              {/* Offset empty slots */}
-              {Array.from({ length: currentMonth.startOffset }).map((_, idx) => (
-                <span key={`empty-${idx}`} className="py-2.5 text-outline-variant/40 select-none">
-                  -
-                </span>
-              ))}
-
-              {/* Render month days */}
-              {Array.from({ length: currentMonth.daysCount }).map((_, idx) => {
-                const dayNum = idx + 1;
-                const isAvailable = currentMonth.availableDays.includes(dayNum);
-                const isSelected = selectedDay === dayNum;
-
-                if (!isAvailable) {
-                  return (
-                    <span
-                      key={dayNum}
-                      className="py-2.5 text-outline-variant/60 rounded-md cursor-not-allowed select-none"
-                    >
-                      {dayNum}
-                    </span>
-                  );
-                }
-
-                return (
-                  <button
-                    key={dayNum}
-                    type="button"
-                    onClick={() => setSelectedDay(dayNum)}
-                    className={`py-2.5 rounded-lg font-medium transition-all cursor-pointer ${
-                      isSelected
-                        ? 'bg-primary-container text-surface-bright font-semibold shadow-xs scale-105'
-                        : 'hover:bg-surface-container-high text-primary hover:text-secondary'
-                    }`}
-                  >
-                    {dayNum}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Time Slot Windows */}
-            <div className="pt-4 border-t border-surface-container space-y-3">
-              <div className="flex items-center justify-between">
-                <p className="font-label-md text-xs sm:text-sm uppercase tracking-wider text-primary font-medium">
-                  {cp.consultationSection.windowsForDatePrefix}{' '}
-                  <span className="font-semibold text-secondary">
-                    {language === 'zh'
-                      ? `${selectedDay}日`
-                      : `Day ${selectedDay}`}
-                  </span>{' '}
-                  (CST)
+              <div className="space-y-2">
+                <p className="font-label-md text-sm text-[#a35e3e] font-semibold">
+                  {isZh ? '2. 15分钟免费初访沟通' : '2. 15-Minute Complimentary Consultation'}
                 </p>
-                <span className="text-xs text-on-surface-variant/80 flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-secondary" />
-                  <span>15 min</span>
-                </span>
+                <p>
+                  {isZh
+                    ? '通过 Portal 锁定时间后，曹翱璇 Jessica 将与您在线上或电话中交流，共同确认咨询方向与契合度。'
+                    : 'We offer a complimentary 15-minute consultation to learn about your goals, answer questions about insurance superbills, and ensure a strong therapeutic fit.'}
+                </p>
               </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                {timeSlots.map((slot) => {
-                  const isSelected = selectedSlot === slot;
-                  return (
-                    <button
-                      key={slot}
-                      type="button"
-                      onClick={() => setSelectedSlot(slot)}
-                      className={`py-2.5 px-3 rounded-lg font-label-md text-xs sm:text-sm transition-all cursor-pointer text-center ${
-                        isSelected
-                          ? 'bg-primary text-on-primary font-semibold shadow-xs ring-2 ring-primary/20'
-                          : 'border border-secondary/40 text-primary hover:bg-surface-container hover:border-secondary'
-                      }`}
-                    >
-                      {slot}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Selected Summary and Confirm Button */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-surface-container">
-              <div className="flex items-center gap-2.5 text-on-surface-variant font-body-sm text-xs sm:text-sm">
-                <span className="material-symbols-outlined text-secondary text-lg">event_available</span>
-                <span className="font-medium text-primary">
-                  {cp.consultationSection.selectedPrefix}{' '}
-                  {language === 'zh'
-                    ? `${currentMonth.nameZh} ${selectedDay}日 · ${selectedSlot} CST (${cp.consultationSection.durationLabel})`
-                    : `${currentMonth.nameEn} Day ${selectedDay} · ${selectedSlot} CST (${cp.consultationSection.durationLabel})`}
-                </span>
-              </div>
-
-              <button
-                type="button"
-                onClick={handleConfirmConsultation}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary-container text-surface-bright px-7 py-3 font-label-md text-xs sm:text-sm uppercase tracking-wider font-semibold transition-all hover:bg-primary shadow-sm active:scale-[0.98] cursor-pointer"
-              >
-                <span>{cp.consultationSection.confirmBtn}</span>
-                <span className="material-symbols-outlined text-sm">check</span>
-              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. Section 3: Physical Sanctuary & Practice Hours (Map, Address & Hours ONLY) */}
+      {/* 4. Section 3: Physical Office & Interactive Map */}
       <section className="w-full py-16 md:py-24 bg-surface border-b border-surface-container">
         <div className="max-w-[1240px] mx-auto px-5 md:px-16 space-y-8">
-          <div className="space-y-2 mb-8 md:mb-12">
+          <div className="space-y-2 mb-8">
             <span
               className="font-label-md uppercase tracking-widest text-xs font-medium"
               style={{ color: 'rgb(163, 94, 62)', display: 'inline-block' }}
@@ -398,23 +281,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-            {/* Left Card: Location & Hours Details */}
+            {/* Left: Address & Hours */}
             <div className="h-full flex flex-col">
-              <div className="bg-surface-container-low p-6 md:p-8 rounded-lg space-y-6 h-full flex flex-col justify-between border border-surface-container/60 shadow-xs">
-                {/* Physical Address */}
-                <div className="space-y-1.5">
+              <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl space-y-6 h-full flex flex-col justify-between border border-surface-container shadow-xs">
+                <div className="space-y-2">
                   <p className="font-headline-md text-xl md:text-2xl text-primary font-semibold">
                     {cp.officeSection.addressLine1}
                   </p>
                   <p className="font-body-md text-sm md:text-base text-on-surface-variant">
                     {cp.officeSection.addressLine2}
                   </p>
+                  <p className="font-body-sm text-xs text-on-surface-variant/80 pt-1">
+                    {cp.officeSection.buildingInfo}
+                  </p>
                 </div>
 
-                {/* Operating Hours Table */}
                 <div className="space-y-3 pt-4 border-t border-surface-container">
-                  <h3 className="font-label-md text-xs uppercase tracking-wider text-on-surface font-semibold">
-                    {cp.officeSection.hoursTitle}
+                  <h3 className="font-label-md text-xs uppercase tracking-wider text-on-surface font-semibold flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-secondary" />
+                    <span>{cp.officeSection.hoursTitle}</span>
                   </h3>
                   <div className="divide-y divide-surface-container font-body-sm text-xs sm:text-sm text-on-surface-variant">
                     <div className="py-2.5 flex justify-between items-center">
@@ -430,159 +315,27 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
             </div>
 
-            {/* Right Card: High-resolution Styled Chicago Map */}
+            {/* Right: Full Interactive Chicago Google Map */}
             <div className="h-full flex flex-col">
-              <div className="relative w-full h-full min-h-[340px] md:min-h-full rounded-2xl overflow-hidden shadow-xs border border-surface-container flex flex-col group">
-                <img
-                  className="w-full h-full min-h-[340px] md:min-h-full object-cover object-center transition-transform duration-700 group-hover:scale-102"
-                  alt={t.imageAlts.chicagoOfficeMap}
-                  src={getAssetUrl('assets/images/overstream-therapy-chicago-monadnock-office-location-map.jpg')}
+              <div className="relative w-full h-full min-h-[380px] rounded-2xl overflow-hidden shadow-xs border border-surface-container flex flex-col bg-surface">
+                <iframe
+                  title="OverStream Therapy Monadnock Office Google Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.627685412497!2d-87.6312480234706!3d41.87834577124234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2cbc515b1ab7%3A0x2ca0b8a43f8e5f7a!2s53%20W%20Jackson%20Blvd%20%23820%2C%20Chicago%2C%20IL%2060604!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '380px' }}
+                  allowFullScreen={true}
                   loading="lazy"
-                  decoding="async"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full rounded-2xl"
                 />
-                {/* Gentle Tint Overlay */}
-                <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
-
-                {/* Office Pin Overlay Card */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-md border border-[#2e382b]/10 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0 text-on-primary">
-                      <MapPin className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-label-md text-xs font-semibold text-primary">OverStream Therapy PLLC</p>
-                      <p className="font-body-sm text-[11px] text-on-surface-variant">53 W Jackson Blvd, Suite 820, Chicago</p>
-                    </div>
-                  </div>
-                  <a
-                    href="https://maps.google.com/?q=53+W+Jackson+Blvd+Suite+820+Chicago+IL+60604"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors"
-                    aria-label="Get directions"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Confidential Direct Message Section (Optional Inquiry / Reassurance) */}
-      <section className="w-full py-16 md:py-20 bg-surface-container-low border-b border-surface-container">
-        <div className="max-w-[760px] mx-auto px-5 md:px-16 space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2 mb-6">
-            <span
-              className="font-label-md uppercase tracking-widest text-xs font-medium"
-              style={{ color: 'rgb(163, 94, 62)', display: 'inline-block' }}
-            >
-              {cp.inquirySection.eyebrow}
-            </span>
-            <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
-              {cp.inquirySection.heading}
-            </h2>
-            <p className="font-body-md text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-xl mx-auto">
-              {cp.inquirySection.description}
-            </p>
-          </div>
-
-          <div className="bg-surface-container-lowest p-6 md:p-8 rounded-2xl shadow-xs border border-surface-container">
-            {isSubmitted ? (
-              <div className="py-8 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-[#dbe6d3] text-[#192317] flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-6 h-6" />
-                </div>
-                <h3 className="font-headline-md text-xl text-primary font-normal">
-                  {cp.inquirySection.successTitle}
-                </h3>
-                <p className="font-body-md text-sm text-on-surface-variant max-w-md mx-auto">
-                  {cp.inquirySection.successDesc}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setIsSubmitted(false)}
-                  className="mt-4 px-6 py-2 rounded-full bg-surface-container text-primary text-xs font-label-md hover:bg-surface-container-high transition-colors"
-                >
-                  {language === 'zh' ? '发送另一条留言' : 'Send Another Note'}
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmitMessage} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="font-label-md text-xs text-on-surface-variant">
-                      {cp.inquirySection.namePlaceholder} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder={cp.inquirySection.namePlaceholder}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-surface border border-surface-container text-on-surface text-sm focus:outline-none focus:border-[#a35e3e]"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="font-label-md text-xs text-on-surface-variant">
-                      {cp.inquirySection.emailPlaceholder} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder={cp.inquirySection.emailPlaceholder}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-surface border border-surface-container text-on-surface text-sm focus:outline-none focus:border-[#a35e3e]"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="font-label-md text-xs text-on-surface-variant">
-                    {cp.inquirySection.phonePlaceholder}
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder={cp.inquirySection.phonePlaceholder}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-surface border border-surface-container text-on-surface text-sm focus:outline-none focus:border-[#a35e3e]"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label className="font-label-md text-xs text-on-surface-variant">
-                    {language === 'zh' ? '留言内容' : 'Your Message'} <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder={cp.inquirySection.messagePlaceholder}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-surface border border-surface-container text-on-surface text-sm focus:outline-none focus:border-[#a35e3e] resize-none"
-                  />
-                </div>
-
-                <div className="pt-2 flex justify-end">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-primary text-on-primary hover:bg-primary-container font-label-md text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer disabled:opacity-60"
-                  >
-                    <span>{isSubmitting ? cp.inquirySection.submitting : cp.inquirySection.submitBtn}</span>
-                    <Send className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Crisis Notice & Clinical Ethics Container */}
+      {/* 5. Crisis Notice */}
       <section className="w-full bg-[#2e382b] text-white/90 py-12 md:py-16">
         <div className="max-w-[880px] mx-auto px-5 md:px-16 text-center space-y-4">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-[#d6c3b3] mb-1">
@@ -594,12 +347,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
           <p className="font-body-sm text-xs sm:text-sm text-white/80 max-w-2xl mx-auto leading-relaxed">
             {cp.crisisNotice.text}
           </p>
-          <div className="pt-2 text-xs text-[#d6c3b3] flex flex-wrap justify-center gap-4">
-            <span className="font-medium">Emergency: 911</span>
+          <div className="pt-2 text-xs text-[#d6c3b3] flex flex-wrap justify-center gap-4 font-medium">
+            <span>Emergency: 911</span>
             <span>•</span>
-            <span className="font-medium">Suicide & Crisis Lifeline: Call or Text 988</span>
+            <span>Suicide & Crisis Lifeline: Call or Text 988</span>
             <span>•</span>
-            <span className="font-medium">Crisis Text Line: Text HOME to 741741</span>
+            <span>Crisis Text Line: Text HOME to 741741</span>
           </div>
         </div>
       </section>

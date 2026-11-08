@@ -357,6 +357,7 @@ export function updatePageSeo({ page, language }: SeoConfig) {
     description: data.description,
     telephone: '+1-312-967-0117',
     email: 'info@overstreamtherapy.com',
+    appointmentServerUrl: 'https://overstreamtherapy.clientsecure.me/request/service',
     priceRange: '$$',
     currenciesAccepted: 'USD',
     paymentAccepted: 'Cash, Credit Card, Superbill for Insurance Reimbursement',

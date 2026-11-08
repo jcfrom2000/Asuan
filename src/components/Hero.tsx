@@ -47,14 +47,31 @@ export const Hero: React.FC<HeroProps> = ({
   }, [headlineText, isZh]);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      const playPromise = videoRef.current.play();
+    const videoEl = videoRef.current;
+    if (videoEl) {
+      videoEl.muted = true;
+      videoEl.defaultMuted = true;
+      
+      const handlePlaying = () => {
+        setIsVideoLoaded(true);
+      };
+
+      videoEl.addEventListener('playing', handlePlaying);
+
+      const playPromise = videoEl.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Fallback handled gracefully via poster image
-        });
+        playPromise
+          .then(() => {
+            setIsVideoLoaded(true);
+          })
+          .catch(() => {
+            // Autoplay blocked or delayed, remain on seamless poster image
+          });
       }
+
+      return () => {
+        videoEl.removeEventListener('playing', handlePlaying);
+      };
     }
   }, []);
 
@@ -74,15 +91,20 @@ export const Hero: React.FC<HeroProps> = ({
         }`}
       />
 
-      {/* 2. High Definition Ambient Loop Background Video */}
+      {/* 2. High Definition Ambient Loop Background Video without default play overlay */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        poster={getAssetUrl('assets/videos/hero-nature-dawn-poster.jpg')}
+        controls={false}
+        disablePictureInPicture
+        disableRemotePlayback
+        aria-hidden="true"
+        tabIndex={-1}
         onCanPlay={() => setIsVideoLoaded(true)}
+        onCanPlayThrough={() => setIsVideoLoaded(true)}
         onLoadedData={() => setIsVideoLoaded(true)}
         style={{ filter: 'brightness(1.12) contrast(1.08) saturate(1.1)' }}
         className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-1000 ${

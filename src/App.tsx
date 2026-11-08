@@ -283,13 +283,13 @@ export default function App() {
     navigateTo(targetPage, language);
   };
 
-  // Handlers for booking triggers
+  // Handlers for booking triggers - navigate directly to Contact page hub
   const handleOpenBooking = (serviceTitle?: string, prefillNote?: string) => {
     if (serviceTitle) {
       setSelectedServiceForBooking(serviceTitle);
     }
     setSelectedBookingNote(prefillNote || '');
-    setIsBookingOpen(true);
+    handleSelectTab('contact');
   };
 
   const handleOpenBookingWithSlot = (slotDetails?: string) => {
@@ -478,6 +478,7 @@ export default function App() {
           <SexIntimacyTherapyPage
             language={language}
             onOpenBooking={(note) => handleOpenBooking('Sex & Intimacy Therapy', note)}
+            onOpenContact={() => handleSelectTab('contact')}
           />
         );
       case 'couple-family-therapy':
@@ -557,7 +558,11 @@ export default function App() {
             />
 
             {/* 10. Closing CTA with Rilke Quote */}
-            <ClosingCta language={language} />
+            <ClosingCta
+              language={language}
+              onOpenContact={() => handleSelectTab('contact')}
+              onOpenBooking={() => handleOpenBooking()}
+            />
           </div>
         );
     }

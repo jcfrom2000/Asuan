@@ -6,11 +6,13 @@ import { getAssetUrl } from '../utils/assets';
 interface SexIntimacyTherapyPageProps {
   language?: Language;
   onOpenBooking: (prefillNote?: string) => void;
+  onOpenContact?: () => void;
 }
 
 export const SexIntimacyTherapyPage: React.FC<SexIntimacyTherapyPageProps> = ({
   language = 'en',
   onOpenBooking,
+  onOpenContact,
 }) => {
   const isZh = language === 'zh';
 
@@ -285,9 +287,17 @@ export const SexIntimacyTherapyPage: React.FC<SexIntimacyTherapyPageProps> = ({
           <blockquote className="font-quote-lead text-2xl sm:text-3xl md:text-4xl font-normal text-white/95 tracking-tight leading-relaxed mb-4">
             {isZh ? '“我的佳偶，你全然美丽，毫无瑕疵。”' : '"You are altogether beautiful, my love; there is no flaw in you."'}
           </blockquote>
-          <cite className="font-label-md text-xs sm:text-sm uppercase tracking-widest font-medium not-italic" style={{ color: 'rgb(214, 163, 139)' }}>
+          <cite className="font-label-md text-xs sm:text-sm uppercase tracking-widest font-medium not-italic mb-6" style={{ color: 'rgb(214, 163, 139)' }}>
             {isZh ? '雅歌 4:7' : 'Song of Solomon 4:7'}
           </cite>
+
+          <button
+            type="button"
+            onClick={onOpenContact || (() => onOpenBooking(isZh ? '性与亲密关系咨询' : 'Sex & Intimacy Therapy'))}
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#fbf7f0] text-[#1e251d] hover:bg-white transition-all font-label-md text-xs sm:text-sm uppercase tracking-wider font-semibold shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer"
+          >
+            <span>{isZh ? '预约性与亲密关系咨询' : 'Book Sex & Intimacy Session'}</span>
+          </button>
         </div>
       </section>
     </article>

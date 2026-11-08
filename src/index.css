@@ -95,6 +95,31 @@
     background-color: var(--color-secondary-container);
     color: var(--color-on-secondary-fixed);
   }
+
+  /* Completely suppress browser-native video play buttons, overlays, and controls */
+  video {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  video::-webkit-media-controls,
+  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-overlay-play-button,
+  video::-webkit-media-controls-enclosure,
+  video::-webkit-media-controls-panel,
+  video::-webkit-media-controls-timeline,
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display,
+  video::-webkit-media-controls-mute-button,
+  video::-webkit-media-controls-toggle-closed-captions-button,
+  video::-webkit-media-controls-volume-slider {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
 }
 
 /* Custom Typography Utilities to match original design system */

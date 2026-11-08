@@ -10,6 +10,8 @@ interface ClosingCtaProps {
 
 export const ClosingCta: React.FC<ClosingCtaProps> = ({
   language,
+  onOpenBooking,
+  onOpenContact,
 }) => {
   const t = translations[language];
 
@@ -29,6 +31,16 @@ export const ClosingCta: React.FC<ClosingCtaProps> = ({
         >
           {t.closingCta.author}
         </p>
+
+        <div className="pt-6 reveal-on-scroll reveal-delay-200">
+          <button
+            type="button"
+            onClick={onOpenContact || onOpenBooking}
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#fbf7f0] text-[#1e251d] hover:bg-white transition-all font-label-md text-xs sm:text-sm uppercase tracking-wider font-semibold shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer"
+          >
+            <span>{language === 'zh' ? '联系在溪心理 • 开启咨询' : 'Contact Practice & Begin Care'}</span>
+          </button>
+        </div>
       </div>
     </section>
   );
